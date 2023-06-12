@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoogleLogin"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:letterSpacing="0"
+        android:padding="16dp"
+        android:text="Continue with Google"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="12sp"
+        app:cornerRadius="24dp"
+        app:iconPadding="8dp"
+        app:icon="@drawable/ic_signup_google"
+        app:iconSize="20dp"
+        app:iconTint="@android:color/transparent"
+        app:iconTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintWidth_percent="0.8"
+        app:strokeColor="#707070"
+        app:strokeWidth="0.5dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFacebookLogin"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:letterSpacing="0"
+        android:padding="16dp"
+        android:text="Continue with Facebook"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="12sp"
+        app:cornerRadius="24dp"
+        app:iconPadding="4dp"
+        app:icon="@drawable/ic_signup_facebook"
+        app:iconSize="20dp"
+        app:iconTint="@android:color/transparent"
+        app:iconTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoogleLogin"
+        app:layout_constraintWidth_percent="0.8"
+        app:strokeColor="#707070"
+        app:strokeWidth="0.5dp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUserName"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:letterSpacing="0"
+        android:padding="16dp"
+        android:text="Login with Email"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="12sp"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/ic_signup_username"
+        app:iconPadding="4dp"
+        app:iconSize="20dp"
+        app:iconTint="@android:color/transparent"
+        app:iconTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFacebookLogin"
+        app:layout_constraintWidth_percent="0.8"
+        app:strokeColor="#707070"
+        app:strokeWidth="0.5dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/major_mono_display"
+        android:text="KickAsh"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Join Kickash"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32999998" />
+
+    <TextView
+        android:id="@+id/tvPrivacyPolicy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/poppins"
+        android:text="By signing up, you agree to our Terms of Service and acknowledge that our Privacy Policy applies to you."
+        android:textColor="?attr/colorOnSurface"
+        android:gravity="center"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnUserName"
+        app:layout_constraintStart_toStartOf="@+id/btnUserName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
