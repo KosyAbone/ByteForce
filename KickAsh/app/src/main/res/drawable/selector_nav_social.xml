@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~  Created by Subash Aryc <subash@evdirect.ca> on 2023-03-02, 10:46 a.m.
+  ~  Last modified 2023-03-02, 10:46 a.m.
+  ~  Copyright (c)  EvDirect Inc. 2023.  All rights reserved.
+  ~
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_social_unselected" android:state_checked="false"/>
+    <item android:drawable="@drawable/ic_social_selected" android:state_checked="true"/>
+</selector>
