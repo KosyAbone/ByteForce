@@ -1,13 +1,13 @@
-package com.byteforce.kickash.ui.main.dashboard
+package com.byteforce.kickash.ui.main.social
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class SocialViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is social Fragment"
     }
     val text: LiveData<String> = _text
 }

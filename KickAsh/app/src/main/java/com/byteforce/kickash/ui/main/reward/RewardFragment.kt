@@ -1,4 +1,4 @@
-package com.byteforce.kickash.ui.main.dashboard
+package com.byteforce.kickash.ui.main.reward
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.byteforce.kickash.databinding.FragmentDashboardBinding
+import com.byteforce.kickash.ui.main.social.SocialViewModel
 
-class DashboardFragment : Fragment() {
+class RewardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -22,14 +23,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val socialViewModel =
+            ViewModelProvider(this).get(RewardViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        socialViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

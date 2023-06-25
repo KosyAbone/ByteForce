@@ -20,12 +20,14 @@
 
     <TextView
         android:id="@+id/lbl1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="What are your hobbies? (You can select more than one)"
-        android:textSize="32sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:gravity="center"
+        android:text="What are your hobbies? (You can select more than one)"
         android:textColor="?attr/colorOnSurface"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/llOptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,69 +41,71 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        android:paddingHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingHorizontal="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61">
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Photography" />
+            android:text="Photography"
+            app:useMaterialThemeColors="true" />
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Painting and Drawing" />
+            android:text="Painting and Drawing"
+            app:useMaterialThemeColors="true" />
+
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Financial savings" />
+            android:text="Financial savings"
+            app:useMaterialThemeColors="true" />
+
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Playing Musical Instruments" />
+            android:text="Playing Musical Instruments"
+            app:useMaterialThemeColors="true" />
+
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Cooking and Baking" />
+            android:text="Cooking and Baking"
+            app:useMaterialThemeColors="true" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Crafting" />
+            android:text="Crafting"
+            app:useMaterialThemeColors="true" />
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Hiking and Nature Walk" />
+            android:text="Hiking and Nature Walk"
+            app:useMaterialThemeColors="true" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:useMaterialThemeColors="true"
-            android:text="Other" />
-
-
+            android:text="Other"
+            app:useMaterialThemeColors="true" />
 
 
     </LinearLayout>

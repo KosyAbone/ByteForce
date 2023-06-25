@@ -1,13 +1,13 @@
-package com.byteforce.kickash.ui.main.notifications
+package com.byteforce.kickash.ui.main.reward
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class RewardViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is reward Fragment"
     }
     val text: LiveData<String> = _text
 }
