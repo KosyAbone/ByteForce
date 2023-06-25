@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.byteforce.kickash.databinding.FragmentNotificationsBinding
 
 class InfoFragment : Fragment() {
@@ -16,6 +17,8 @@ class InfoFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private lateinit var adapter: ArticleAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +31,25 @@ class InfoFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        infoViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
+        initUI()
+
         return root
     }
+
+
+    fun initUI() {
+
+
+        binding.rvArticles.adapter = ArticleAdapter(DataHub.articles) {
+
+        }
+
+        binding.rvArticles.layoutManager = LinearLayoutManager(requireContext())
+
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

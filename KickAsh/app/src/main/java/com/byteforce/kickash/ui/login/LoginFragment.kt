@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
 import com.byteforce.kickash.databinding.FragmentLoginBinding
 import com.byteforce.kickash.ui.main.SlideShowActivity
@@ -162,8 +163,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onStart() {
         super.onStart()
 //        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        updateUI(currentUser)
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
     }
 
     private fun updateUI(user: FirebaseUser?) {
@@ -172,7 +173,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         Toast.makeText(requireContext(),"Welcome ${user!!.displayName}",Toast.LENGTH_SHORT).show()
 
-        val i = Intent(requireContext(), Questionair1Activity::class.java)
+        val i = Intent(requireContext(), MainActivity::class.java)
         requireActivity().startActivity(i)
 
     }
