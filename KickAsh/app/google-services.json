@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "684826609112",
+    "project_id": "byteforce-e9032",
+    "storage_bucket": "byteforce-e9032.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684826609112:android:eea854cb4e7e42efb01ead",
+        "android_client_info": {
+          "package_name": "com.byteforce.kickash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684826609112-tkcpm2t5ipk3ft3p5du4f8h3vkn11aqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCveLeDc0TGSuzitOwS3CigE4Nbe7Ue0cU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684826609112-226he6kl0b9fm8cf4c90cd2lhvpjkeuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
