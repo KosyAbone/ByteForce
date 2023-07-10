@@ -42,11 +42,6 @@ class HomeFragment : Fragment() {
 
     fun initUI() {
 
-        binding.lblGreetings.text = "Good Morning " + user!!.displayName
-
-        Picasso.get().load(user!!.photoUrl)
-            .transform(CropCircleTransformation())
-            .into(binding.ivUserImage)
 
 
     }
