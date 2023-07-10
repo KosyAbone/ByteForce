@@ -173,7 +173,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         Toast.makeText(requireContext(),"Welcome ${user!!.displayName}",Toast.LENGTH_SHORT).show()
 
-        val i = Intent(requireContext(), MainActivity::class.java)
+        val i = Intent(requireContext(), Questionair1Activity::class.java)
         requireActivity().startActivity(i)
 
     }
