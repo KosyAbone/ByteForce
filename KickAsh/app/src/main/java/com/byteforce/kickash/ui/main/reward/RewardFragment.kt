@@ -40,7 +40,7 @@ class RewardFragment : Fragment() {
 //        }
 
         val pointsText : TextView = root.findViewById<TextView>(R.id.points)
-        pointsText.text = rewardsPoints.toString()
+        pointsText.text = "Your Points : " + rewardsPoints.toString()
 
         initUI()
 

@@ -74,7 +74,7 @@ class RewardAdapter(private var rewardList: List<RewardModel>, private val recyc
             reward.couponRedeemed = true
 
             RewardFragment.rewardsPoints = RewardFragment.rewardsPoints - reward.pointsRequired
-            rewardFragmentBinding.points.text = RewardFragment.rewardsPoints.toString()
+            rewardFragmentBinding.points.text = "Your Points : " + RewardFragment.rewardsPoints.toString()
 
             // Refresh the fragment and update the UI
             notifyDataSetChanged()
