@@ -51,7 +51,7 @@ class RewardAdapter(private var rewardList: List<RewardModel>, private val recyc
 
                 if(!reward.couponRedeemed){
                     holder.redeemButton.isEnabled = true
-                    holder.redeemButton.text = "Redeem coupon for " + reward.pointsRequired
+                    holder.redeemButton.text = "Redeem coupon for " + reward.pointsRequired + " points"
                 }
                 else{
                     holder.redeemButton.isEnabled = false

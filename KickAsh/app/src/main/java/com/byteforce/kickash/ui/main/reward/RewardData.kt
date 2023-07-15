@@ -25,14 +25,14 @@ object RewardData {
             couponLock = false,
             couponRedeemed = true,
             imageURL = "https://seeklogo.com/images/T/Tim_Hortons-logo-044A25466D-seeklogo.com.png"
+        ),
+        RewardModel(
+            provider = "Starbucks",
+            pointsRequired = 500,
+            offerValue = "15%",
+            couponLock = false,
+            couponRedeemed = false,
+            imageURL = "https://stories.starbucks.com/uploads/2019/01/Starbucks_Logo_Hi-res.jpg"
         )
-//        RewardModel(
-//            provider = "Starbucks",
-//            pointsRequired = 500,
-//            offerValue = "15%",
-//            couponLock = false,
-//            couponRedeemed = false,
-//            imageURL = "https://stories.starbucks.com/uploads/2019/01/Starbucks_Logo_Hi-res.jpg"
-//        )
     )
 }
