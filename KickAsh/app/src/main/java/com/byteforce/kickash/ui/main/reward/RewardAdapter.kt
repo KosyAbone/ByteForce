@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.R
 import com.squareup.picasso.Picasso
 
-class RewardAdapter(var rewardList: List<RewardModel>) : RecyclerView.Adapter<RewardAdapter.ViewHolder>() {
+class RewardAdapter(private var rewardList: List<RewardModel>) : RecyclerView.Adapter<RewardAdapter.ViewHolder>() {
 
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val offerTextField : TextView = view.findViewById(R.id.offerText)
         val couponTextField : TextView = view.findViewById(R.id.couponStatusText)
-        val redeemButtom : Button = view.findViewById(R.id.redeemButton)
+        val redeemButton : Button = view.findViewById(R.id.redeemButton)
         val rewardImage : ImageView = view.findViewById(R.id.cardBackgroundImage)
 
     }
@@ -41,24 +41,24 @@ class RewardAdapter(var rewardList: List<RewardModel>) : RecyclerView.Adapter<Re
         if(reward.pointsRequired <= RewardFragment.rewardsPoints) {
             if(reward.couponLock and !(reward.couponRedeemed)){
                 holder.couponTextField.text = "Coupon Locked"
-                holder.redeemButtom.isEnabled = false
+                holder.redeemButton.isEnabled = false
             }
             else{
                 holder.couponTextField.text = "Coupon Unlocked"
 
-                if(reward.couponRedeemed == false){
-                    holder.redeemButtom.isEnabled = true
-                    holder.redeemButtom.text = "Redeem coupon for " + reward.pointsRequired
+                if(!reward.couponRedeemed){
+                    holder.redeemButton.isEnabled = true
+                    holder.redeemButton.text = "Redeem coupon for " + reward.pointsRequired
                 }
                 else{
-                    holder.redeemButtom.isEnabled = false
-                    holder.redeemButtom.text = "Coupon Redeemed"
+                    holder.redeemButton.isEnabled = false
+                    holder.redeemButton.text = "Coupon Redeemed"
                 }
 
             }
         }
 
-        holder.redeemButtom.setOnClickListener{
+        holder.redeemButton.setOnClickListener{
             RewardFragment.rewardsPoints = RewardFragment.rewardsPoints - reward.pointsRequired
 
             val alertDialog = AlertDialog.Builder(holder.itemView.context)
