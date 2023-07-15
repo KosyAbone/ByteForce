@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_info"
-        android:name="com.byteforce.kickash.ui.main.info.InfoFragment"
-        android:label="Info"
+        android:name="com.byteforce.kickash.ui.main.info.ProfileFragment"
+        android:label="Profile"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
