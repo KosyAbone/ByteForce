@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.byteforce.kickash.R
 import com.byteforce.kickash.databinding.FragmentDashboardBinding
 import com.byteforce.kickash.databinding.FragmentRewardsBinding
@@ -43,15 +44,16 @@ class RewardFragment : Fragment() {
     }
 
     fun initUI(){
-        val inflater: LayoutInflater = LayoutInflater.from(context)
-        val customView = inflater.inflate(R.layout.fragment_rewards, null)
-
-        val parentLayout: LinearLayout = binding.root.findViewById(R.id.rewardsCard)
-        parentLayout.addView(customView)
+        binding.rewardsRecyclerView.adapter = RewardAdapter(RewardData.rewards)
+        binding.rewardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        var rewardsPoints = 4000
     }
 }

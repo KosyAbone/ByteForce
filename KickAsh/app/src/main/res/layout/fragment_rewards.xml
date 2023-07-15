@@ -58,6 +58,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rewardsRecyclerView"
         android:layout_width="424dp"
         android:layout_height="634dp"
         tools:layout_editor_absoluteX="1dp"
