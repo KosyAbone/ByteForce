@@ -1,6 +1,7 @@
 package com.byteforce.kickash.ui.main.reward
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
+import com.byteforce.kickash.databinding.FragmentRewardsBinding
 import com.squareup.picasso.Picasso
 
-class RewardAdapter(private var rewardList: List<RewardModel>) : RecyclerView.Adapter<RewardAdapter.ViewHolder>() {
+class RewardAdapter(private var rewardList: List<RewardModel>, private val recyclerView: RecyclerView, private val rewardFragmentBinding: FragmentRewardsBinding) : RecyclerView.Adapter<RewardAdapter.ViewHolder>() {
 
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val offerTextField : TextView = view.findViewById(R.id.offerText)
@@ -59,7 +62,6 @@ class RewardAdapter(private var rewardList: List<RewardModel>) : RecyclerView.Ad
         }
 
         holder.redeemButton.setOnClickListener{
-            RewardFragment.rewardsPoints = RewardFragment.rewardsPoints - reward.pointsRequired
 
             val alertDialog = AlertDialog.Builder(holder.itemView.context)
                 .setTitle("Coupon Redeemed")
@@ -70,6 +72,13 @@ class RewardAdapter(private var rewardList: List<RewardModel>) : RecyclerView.Ad
             alertDialog.show()
 
             reward.couponRedeemed = true
+
+            RewardFragment.rewardsPoints = RewardFragment.rewardsPoints - reward.pointsRequired
+            rewardFragmentBinding.points.text = RewardFragment.rewardsPoints.toString()
+
+            // Refresh the fragment and update the UI
+            notifyDataSetChanged()
+            recyclerView.layoutManager?.scrollToPosition(holder.adapterPosition)
         }
     }
 }

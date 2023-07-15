@@ -1,6 +1,7 @@
 package com.byteforce.kickash.ui.main.reward
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,13 +39,16 @@ class RewardFragment : Fragment() {
 //            textView.text = it
 //        }
 
+        val pointsText : TextView = root.findViewById<TextView>(R.id.points)
+        pointsText.text = rewardsPoints.toString()
+
         initUI()
 
         return root
     }
 
     fun initUI(){
-        binding.rewardsRecyclerView.adapter = RewardAdapter(RewardData.rewards)
+        binding.rewardsRecyclerView.adapter = RewardAdapter(RewardData.rewards, binding.rewardsRecyclerView, binding)
         binding.rewardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
@@ -54,6 +58,6 @@ class RewardFragment : Fragment() {
     }
 
     companion object {
-        var rewardsPoints = 4000
+        var rewardsPoints : Int = 4000
     }
 }
