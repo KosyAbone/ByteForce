@@ -5,13 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.byteforce.kickash.R
 import com.byteforce.kickash.databinding.FragmentDashboardBinding
+import com.byteforce.kickash.databinding.FragmentSocialBinding
 
-class SocialFragment : Fragment() {
+class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAdapterListener {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentSocialBinding? = null
+
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var adapter: SocialMessageAdapter;
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,15 +31,22 @@ class SocialFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val socialViewModel =
-            ViewModelProvider(this).get(SocialViewModel::class.java)
+        val socialViewModel = ViewModelProvider(this).get(SocialViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentSocialBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        socialViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        recyclerView = binding.socialMessageRecyclerView
+
+
+        adapter = SocialMessageAdapter(emptyList(), this)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        socialViewModel.socialMessageList.observe(viewLifecycleOwner) {
+            adapter.updateMessages(it)
+            adapter?.notifyDataSetChanged()
         }
         return root
     }
@@ -38,5 +54,10 @@ class SocialFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    override fun onItemUpdate() {
+        adapter?.notifyDataSetChanged()
     }
 }

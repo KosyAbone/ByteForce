@@ -20,7 +20,7 @@
     android:id="@+id/navigation_social"
     android:name="com.byteforce.kickash.ui.main.social.SocialFragment"
     android:label="Social"
-    tools:layout="@layout/fragment_dashboard" />
+    tools:layout="@layout/fragment_social" />
 
 
     <fragment
