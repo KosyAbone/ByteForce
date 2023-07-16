@@ -17,7 +17,7 @@
         android:label="Reward" />
 
      <fragment
-    android:id="@+id/navigation_social"
+    android:id="@+id/navigation_social2"
     android:name="com.byteforce.kickash.ui.main.social.SocialFragment"
     android:label="Social"
     tools:layout="@layout/fragment_social" />
@@ -28,4 +28,28 @@
         android:name="com.byteforce.kickash.ui.main.info.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_social"
+        android:name="com.byteforce.kickash.ui.main.social.SocialOnboard1Fragment"
+        android:label="SocialOnboardingFragment" >
+        <action
+            android:id="@+id/action_navigation_social_to_socialOnboard2Fragment2"
+            app:destination="@id/socialOnboard2Fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialOnboard2Fragment2"
+        android:name="com.byteforce.kickash.ui.main.social.SocialOnboard2Fragment"
+        android:label="SocialOnboard2Fragment" >
+        <action
+            android:id="@+id/action_socialOnboard2Fragment2_to_socialOnboard3Fragment2"
+            app:destination="@id/socialOnboard3Fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialOnboard3Fragment2"
+        android:name="com.byteforce.kickash.ui.main.social.SocialOnboard3Fragment"
+        android:label="SocialOnboard3Fragment" >
+        <action
+            android:id="@+id/action_socialOnboard3Fragment2_to_navigation_social2"
+            app:destination="@id/navigation_social2" />
+    </fragment>
 </navigation>
