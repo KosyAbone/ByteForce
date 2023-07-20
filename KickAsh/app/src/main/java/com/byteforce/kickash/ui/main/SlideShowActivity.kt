@@ -38,14 +38,7 @@ class SlideShowActivity: BaseActivity() {
 
 
 
-
-
-
-
-
     }
-
-
 
 
 
