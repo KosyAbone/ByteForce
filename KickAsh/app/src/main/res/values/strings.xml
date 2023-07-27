@@ -6,5 +6,7 @@
 
     <string name="facebook_app_id">1196159827719139</string>
     <string name="your_web_client_id">684826609112-tkcpm2t5ipk3ft3p5du4f8h3vkn11aqj.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
