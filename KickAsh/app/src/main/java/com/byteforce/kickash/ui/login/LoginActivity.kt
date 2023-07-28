@@ -48,4 +48,8 @@ class LoginActivity : BaseActivity() {
 
         binding.vpAuth.adapter = adapter
     }
+
+    fun goToUsernameLogin(){
+        binding.vpAuth.setCurrentItem(2,true)
+    }
 }

@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.history.HistoryFragment">
 
+
+
+
+
+
     <TextView
         android:id="@+id/HistoryTV"
         style="@style/Widget.AppCompat.TextView"

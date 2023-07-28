@@ -52,13 +52,24 @@ class HomeFragment : Fragment() {
 
 
     fun initUI() {
-    binding.HistoryText.setOnClickListener {
-        findNavController().navigate(R.id.navigation_history)
+
+        binding.mcvHistory.setOnClickListener {
+            findNavController().navigate(R.id.navigation_history)
+        }
+
+        binding.btnHistory.setOnClickListener {
+            findNavController().navigate(R.id.navigation_history)
+        }
+
+        binding.btnReadArticles.setOnClickListener {
+            findNavController().navigate(R.id.articlesFragment)
+        }
+
+        binding.mcvArticles.setOnClickListener {
+            findNavController().navigate(R.id.articlesFragment)
+        }
+
     }
-
-
-    }
-
 
 
     override fun onDestroyView() {

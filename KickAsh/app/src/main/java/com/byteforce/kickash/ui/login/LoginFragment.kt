@@ -62,7 +62,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.btnUserName.setOnClickListener {
-            openSlideShow()
+            (requireActivity() as LoginActivity).goToUsernameLogin()
         }
 
     }
