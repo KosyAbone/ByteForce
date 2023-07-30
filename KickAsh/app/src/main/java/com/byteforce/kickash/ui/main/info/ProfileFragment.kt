@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.byteforce.kickash.databinding.FragmentProfileBinding
@@ -36,7 +37,11 @@ class ProfileFragment : Fragment() {
     }
 
 
+
+
     fun initUI() {
+
+
 
 
 //        binding.rvArticles.adapter = ArticleAdapter(DataHub.articles) {
@@ -45,7 +50,45 @@ class ProfileFragment : Fragment() {
 //
 //        binding.rvArticles.layoutManager = LinearLayoutManager(requireContext())
 
+      //  binding.btn
 
+        binding.editButton.setOnClickListener {
+            isInEditMode = !isInEditMode
+            setEditMode(isInEditMode)
+        }
+
+        setMockData()
+
+    }
+
+    fun setMockData() {
+        binding.etDob.setText("2000-02-03")
+        binding.emailEditText.setText("test@test.com")
+        binding.etGender.setText("Male")
+        binding.etSmokingAge.setText("8")
+
+        binding.etEstimatedCost.setText("18")
+        binding.etDisplayName.setText("Test")
+        binding.etNoOfCigarette.setText("10")
+
+    }
+
+    private var isInEditMode = false
+
+    fun setEditMode(editEnabled:Boolean) {
+
+        binding.etDob.isEnabled = editEnabled
+        binding.etDisplayName.isEnabled = editEnabled
+        binding.etGender.isEnabled = editEnabled
+        binding.etEstimatedCost.isEnabled = editEnabled
+        binding.etNoOfCigarette.isEnabled = editEnabled
+        binding.etSmokingAge.isEnabled = editEnabled
+        binding.emailEditText.isEnabled = editEnabled
+
+        binding.llConfirmPassword.isVisible = editEnabled
+
+        binding.btnUpdate.isVisible = editEnabled
+        binding.editButton.text = if(editEnabled) "View" else "Edit"
     }
 
 
