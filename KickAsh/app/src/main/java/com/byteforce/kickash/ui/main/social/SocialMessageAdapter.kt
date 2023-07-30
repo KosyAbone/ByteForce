@@ -1,5 +1,6 @@
 package com.byteforce.kickash.ui.main.social
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.R
 import kotlin.random.Random
 
-class SocialMessageAdapter(private var data: List<SocialMessage>, private val socialMessageRecyclerAdapterListener: SocialMessageRecyclerAdapterListener): RecyclerView.Adapter<SocialMessageAdapter.ItemViewHolder>() {
+class SocialMessageAdapter(private var data: MutableList<SocialMessage>, private val socialMessageRecyclerAdapterListener: SocialMessageRecyclerAdapterListener): RecyclerView.Adapter<SocialMessageAdapter.ItemViewHolder>() {
 
     private val listener = socialMessageRecyclerAdapterListener
 
@@ -22,9 +23,11 @@ class SocialMessageAdapter(private var data: List<SocialMessage>, private val so
 
         private val messageBody: TextView = itemView.findViewById(R.id.socialMessageBody)
         private val messageDateTime: TextView = itemView.findViewById(R.id.socialMessageDatetime)
+        private val messageUserName: TextView = itemView.findViewById(R.id.socialMessageUserDisplayName)
         override fun bindItemDataToView(item: SocialMessage) {
             messageBody.text = item.messageBody
             messageDateTime.text = item.getTimeString()
+            messageUserName.text = item.senderId
         }
     }
 
@@ -33,9 +36,11 @@ class SocialMessageAdapter(private var data: List<SocialMessage>, private val so
 
         private val messageBody: TextView = itemView.findViewById(R.id.socialSelfMessageBody)
         private val messageDateTime: TextView = itemView.findViewById(R.id.socialSelfMessageDatetime)
+        private val messageUserName: TextView = itemView.findViewById(R.id.socialMessageUserSelfDisplayName)
         override fun bindItemDataToView(item: SocialMessage) {
             messageBody.text = item.messageBody
             messageDateTime.text = item.getTimeString()
+            messageUserName.text = item.senderId
         }
     }
 
@@ -44,15 +49,17 @@ class SocialMessageAdapter(private var data: List<SocialMessage>, private val so
 
         val type = getUserMessageType()
 
-        when (type) {
+        itemViewHolder = when (type) {
             OTHER_USER_TYPE->{
                 val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_social_message, parent, false)
-                itemViewHolder = BasicMessageViewHolder(itemView)
+                BasicMessageViewHolder(itemView)
             }
+
             SELF_USER_TYPE->{
                 val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_social_message_self, parent, false)
-                itemViewHolder = SelfMessageViewHolder(itemView)
+                SelfMessageViewHolder(itemView)
             }
+
             else->
                 throw IllegalArgumentException("")
         }
@@ -62,7 +69,7 @@ class SocialMessageAdapter(private var data: List<SocialMessage>, private val so
 
     private fun getUserMessageType(): Int {
         //Should be checking if current user is same user as message owner
-        return Random.nextInt(2)
+        return 0
     }
 
     override fun getItemCount(): Int {
@@ -75,8 +82,23 @@ class SocialMessageAdapter(private var data: List<SocialMessage>, private val so
     }
 
     fun updateMessages(messages: List<SocialMessage>) {
-        data = messages
+        data = messages.toMutableList()
         notifyDataSetChanged()
+    }
+
+    fun appendMessages(messages: List<SocialMessage>, index: Int?) {
+        if ((index != null) && !checkIndexValidity(messages, index)) {
+            Log.d("ERROR", "Invalid index given to social message list adapter")
+            return
+        }else if (index == null) {
+            data.addAll(messages)
+        }else {
+            data.addAll(index, messages)
+        }
+    }
+
+    private fun checkIndexValidity(list: List<Any>, index: Int): Boolean {
+        return (index >= 0 && index < list.size)
     }
 
     interface SocialMessageRecyclerAdapterListener{

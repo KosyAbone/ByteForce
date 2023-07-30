@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.databinding.FragmentSocialBinding
+import com.byteforce.kickash.ui.main.social.messageapi.MessageModel
 
 class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAdapterListener {
 
@@ -35,7 +36,7 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
         recyclerView = binding.socialMessageRecyclerView
 
 
-        adapter = SocialMessageAdapter(emptyList(), this)
+        adapter = SocialMessageAdapter(emptyList<SocialMessage>().toMutableList(), this)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)

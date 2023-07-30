@@ -1,0 +1,77 @@
+package com.byteforce.kickash.ui.main.social.messageapi
+
+import android.content.Context
+import android.util.Log
+import com.byteforce.kickash.utils.Utils
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.lang.ref.WeakReference
+
+class MessageApiCaller {
+    private var activityContext: WeakReference<Context>? = null
+
+    private val moshi: Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .add(DateAdapter()).build()
+
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl("https://byteforce-api.onrender.com")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+
+    val messageApiService: MessageApiService = retrofit.create(MessageApiService::class.java)
+
+    constructor(context: Context) {
+        this.activityContext = WeakReference(context)
+    }
+
+    fun getContext(): Context? {
+        return this.activityContext?.get()
+    }
+
+    suspend fun getMessages(params: MessageGetQueryParams): List<MessageModel> {
+
+        val (page, startTime, endTime, userId, message) = params
+        return withContext(Dispatchers.IO) {
+            val response = messageApiService.getMessages(page, startTime, endTime, userId, message).execute()
+            if (response.isSuccessful) {
+
+                val responseBody: MessageListModel? = response.body()
+
+                if (responseBody != null) {
+                    if (responseBody.messages.isEmpty()) {
+                        getContext()?.let { Utils.showSimpleToast("No items found", it) }
+                    }
+                }
+                responseBody?.messages ?: emptyList()
+            } else {
+                Log.d("ERROR", "Failed to get movie data from remote: ${response.code()}")
+                getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
+                emptyList()
+            }
+        }
+    }
+
+    suspend fun sendMessage(userId: String, message: String): MessageModel? {
+        return withContext(Dispatchers.IO) {
+            val response = messageApiService.sendMessage(MessagePostModel(userId, message)).execute()
+            if (response.isSuccessful) {
+
+                val responseBody: MessageModel? = response.body()
+
+                if (responseBody == null) {
+                    getContext()?.let { Utils.showSimpleToast("Failed to deliver message", it) }
+                }
+                responseBody
+            } else {
+                Log.d("ERROR", "Failed to get movie data from remote: ${response.code()}")
+                getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
+                null
+            }
+        }
+    }
+}
