@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.R
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class SocialMessageAdapter(private var data: MutableList<SocialMessage>): RecyclerView.Adapter<SocialMessageAdapter.ItemViewHolder>() {
 
@@ -41,8 +43,19 @@ class SocialMessageAdapter(private var data: MutableList<SocialMessage>): Recycl
         private val messageUserName: TextView = itemView.findViewById(R.id.socialMessageUserSelfDisplayName)
         override fun bindItemDataToView(item: SocialMessage) {
             messageBody.text = item.messageBody
-            messageDateTime.text = item.getTimeString()
+            messageDateTime.text = utcStringToLocalTimeString(item.getTimeString())
             messageUserName.text = item.senderId
+        }
+        private fun utcStringToLocalTimeString(utcTimeString: String): String {
+            val utcDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
+            utcDateFormat.timeZone = java.util.TimeZone.getTimeZone("UTC")
+
+            // Parse the UTC time string into a Date object
+            val utcDate = utcDateFormat.parse(utcTimeString)
+
+            // Define the desired date format for the localized time string
+            val localizedDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            return localizedDateFormat.format(utcDate)
         }
     }
 
