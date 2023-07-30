@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.databinding.FragmentSocialBinding
 import com.byteforce.kickash.ui.main.social.messageapi.MessageModel
+import com.google.android.material.snackbar.Snackbar
 
 class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAdapterListener {
+
+    private var isLoading = false // Flag to prevent multiple requests while waiting for a response
 
     private var _binding: FragmentSocialBinding? = null
 
@@ -44,7 +47,11 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
 
         socialViewModel.socialMessageList.observe(viewLifecycleOwner) {
             adapter.updateMessages(it)
-            adapter?.notifyDataSetChanged()
+        }
+        socialViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                showViewModelErrorMessage(it)
+            }
         }
         return root
     }
@@ -58,4 +65,12 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
     override fun onItemUpdate() {
         adapter?.notifyDataSetChanged()
     }
+
+
+    private fun showViewModelErrorMessage(errorMessage: String) {
+        val rootView = requireView()
+
+        Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_SHORT).show()
+    }
+
 }
