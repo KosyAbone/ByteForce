@@ -1,4 +1,4 @@
-package com.byteforce.kickash.ui.main.info
+package com.byteforce.kickash.ui.main.articles
 
 data class ArticleModel(
     val id:Int,

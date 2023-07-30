@@ -1,5 +1,7 @@
 package com.byteforce.kickash.ui.main.info
 
+import com.byteforce.kickash.ui.main.articles.ArticleModel
+
 object DataHub {
 
     val articles = listOf(

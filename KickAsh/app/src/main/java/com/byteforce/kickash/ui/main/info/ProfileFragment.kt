@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.byteforce.kickash.databinding.FragmentProfileBinding
+import com.byteforce.kickash.ui.main.articles.ArticleAdapter
 
 class ProfileFragment : Fragment() {
 
