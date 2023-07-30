@@ -11,18 +11,12 @@
 
 
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/HistoryTV"
-        style="@style/Widget.AppCompat.TextView"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/md_theme_dark_inversePrimary"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="History"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
+        app:title="History"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

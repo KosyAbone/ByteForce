@@ -38,6 +38,7 @@
         <activity android:name="com.byteforce.kickash.ui.questionair.Questionair5Activity" />
         <activity android:name="com.byteforce.kickash.ui.questionair.Questionair4Activity" />
         <activity android:name="com.byteforce.kickash.ui.questionair.Questionair3Activity" />
+        <activity android:name="com.byteforce.kickash.ui.main.articles.ArticlesDetailActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

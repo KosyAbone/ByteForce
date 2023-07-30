@@ -1,5 +1,6 @@
 package com.byteforce.kickash.ui.main.articles
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,8 @@ class ArticlesFragment : Fragment() {
 
 
         binding.rvArticles.adapter = ArticleAdapter(DataHub.articles) {
+            val i = Intent(requireActivity(),ArticlesDetailActivity::class.java)
+            requireActivity().startActivity(i)
 
         }
 
