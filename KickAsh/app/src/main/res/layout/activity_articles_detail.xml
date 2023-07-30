@@ -2,67 +2,72 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- Header Image -->
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        app:title="Article Detail"/>
-
-    <ImageView
-        android:id="@+id/article_header_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
-
-    <!-- Article Title -->
-    <TextView
-        android:id="@+id/article_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/article_header_image"
-        android:padding="16dp"
-        android:text="Quit Smoking for a Healthier and Happier Life"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        app:title="Article Detail" />
 
-    <!-- Article Author -->
-    <TextView
-        android:id="@+id/article_author"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/article_title"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="By: Site Admin · Subash Aryal · 3 hrs ago"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp" />
+        android:layout_height="wrap_content">
 
-    <!-- Article Content -->
-    <ScrollView
-        android:id="@+id/article_content_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/article_author">
-
-        <TextView
-            android:id="@+id/article_content"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/article_sample"
-            android:lineSpacingExtra="12dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:orientation="vertical">
 
-    </ScrollView>
+            <ImageView
+                android:id="@+id/article_header_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+            <!-- Article Title -->
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_header_image"
+                android:padding="16dp"
+                android:text="Quit Smoking for a Healthier and Happier Life"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Article Author -->
+            <TextView
+                android:id="@+id/article_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_title"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="By: Site Admin · Subash Aryal · 3 hrs ago"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/article_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:lineSpacingExtra="12dp"
+                android:padding="16dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
