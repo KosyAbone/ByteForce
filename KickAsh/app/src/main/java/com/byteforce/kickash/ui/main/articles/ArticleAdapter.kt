@@ -1,7 +1,6 @@
-package com.byteforce.kickash.ui.main.info
+package com.byteforce.kickash.ui.main.articles
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.byteforce.kickash.databinding.ItemArticlesBinding

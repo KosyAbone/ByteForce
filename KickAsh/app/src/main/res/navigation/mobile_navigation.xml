@@ -59,6 +59,6 @@
     </fragment>
     <fragment
         android:id="@+id/articlesFragment"
-        android:name="com.byteforce.kickash.ui.main.info.ArticlesFragment"
+        android:name="com.byteforce.kickash.ui.main.articles.ArticlesFragment"
         android:label="ArticlesFragment" />
 </navigation>

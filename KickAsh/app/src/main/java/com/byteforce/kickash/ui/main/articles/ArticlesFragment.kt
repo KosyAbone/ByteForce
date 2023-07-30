@@ -1,5 +1,6 @@
-package com.byteforce.kickash.ui.main.info
+package com.byteforce.kickash.ui.main.articles
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.byteforce.kickash.databinding.FragmentNotificationsBinding
-import com.byteforce.kickash.databinding.FragmentProfileBinding
+import com.byteforce.kickash.ui.main.info.DataHub
+import com.byteforce.kickash.ui.main.info.InfoViewModel
 
 class ArticlesFragment : Fragment() {
 
@@ -42,6 +44,8 @@ class ArticlesFragment : Fragment() {
 
 
         binding.rvArticles.adapter = ArticleAdapter(DataHub.articles) {
+            val i = Intent(requireActivity(),ArticlesDetailActivity::class.java)
+            requireActivity().startActivity(i)
 
         }
 

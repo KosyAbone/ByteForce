@@ -14,7 +14,6 @@ import com.google.android.material.textfield.TextInputEditText
 
 class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

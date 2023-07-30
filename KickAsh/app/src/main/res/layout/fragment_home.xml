@@ -100,7 +100,97 @@
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mcvGoal" />
+
+
+    <TextView
+        android:id="@+id/tvGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Goal for the Day"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivStats" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGoal"
+        android:layout_margin="16dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_margin="16dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goal_imag"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:text="Only Smoke 5 Cigarette per day"/>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:progress="25"
+                    android:layout_marginTop="12dp"
+                    app:trackCornerRadius="8dp"
+                    app:trackThickness="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="+1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"
+                    android:text="1/5"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mcvDay1"
@@ -487,6 +577,7 @@
                 android:layout_height="wrap_content"
                 android:text="Relapse.. I smoked again !!"
                 app:cornerRadius="4dp"
+                android:visibility="gone"
                 android:layout_margin="16dp"
                 android:backgroundTint="#F44336"
                 />
