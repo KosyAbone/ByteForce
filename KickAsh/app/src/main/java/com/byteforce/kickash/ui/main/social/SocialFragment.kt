@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.byteforce.kickash.R
-import com.byteforce.kickash.databinding.FragmentDashboardBinding
 import com.byteforce.kickash.databinding.FragmentSocialBinding
 
 class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAdapterListener {
@@ -43,6 +39,7 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+        (recyclerView.layoutManager as LinearLayoutManager).reverseLayout = true;
 
         socialViewModel.socialMessageList.observe(viewLifecycleOwner) {
             adapter.updateMessages(it)
