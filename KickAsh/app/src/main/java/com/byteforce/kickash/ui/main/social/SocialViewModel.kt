@@ -20,20 +20,11 @@ import kotlin.random.Random
 
 class SocialViewModel(application: Application) : AndroidViewModel(application) {
 
-    fun generateRandomTimestamp(): Long {
-        val calendar = Calendar.getInstance()
 
-        calendar.add(Calendar.DAY_OF_YEAR, -1)
-
-        val currentTime = System.currentTimeMillis()
-
-        val yesterdayTimestamp = calendar.timeInMillis
-
-        return Random.nextLong(yesterdayTimestamp, currentTime)
-    }
+    private var modelReady = false
 
     private val messageApiCaller = MessageApiCaller(getApplication())
-
+    private val existingMessageIds = mutableSetOf<String>()
 
     val socialMessageList: MutableLiveData<List<SocialMessage>> = MutableLiveData<List<SocialMessage>>()
 
@@ -57,6 +48,7 @@ class SocialViewModel(application: Application) : AndroidViewModel(application) 
                         )
                     }
                     socialMessageList.value = socialMessages
+                    existingMessageIds.addAll(socialMessages.map { it.id })
                     // Break out of the loop if data is successfully retrieved
                     break
                 } catch (e: Exception) {
@@ -68,13 +60,99 @@ class SocialViewModel(application: Application) : AndroidViewModel(application) 
 
             if (retries == maxRetries) {
                 val context = getApplication<Application>()
-                if (context != null) {
-                    Utils.showSimpleDialog("Sorry", "We are experiencing an unexpected issue, please try again later or contact us for assistance", context)
-                }else {
                     error.postValue("We are experiencing an unexpected issue, please try again later or contact us for assistance")
+
+            }
+            modelReady = true
+        }
+    }
+
+
+
+
+    fun oldMessagePoll(page: Int) {
+        if (!modelReady) {
+            return
+        }
+        viewModelScope.launch {
+            try {
+                val apiData: List<MessageModel> = withContext(Dispatchers.IO) {
+                    messageApiCaller.getMessages(MessageGetQueryParams(page, null, null, null, null))
                 }
+                val socialMessages = apiData.map { messageModel ->
+                    SocialMessage(
+                        messageModel.id,
+                        messageModel.userId,
+                        messageModel.messageTimestamp.time,
+                        messageModel.message
+                    )
+                }
+                appendSocialData(socialMessages.filter { !existingMessageIds.contains(it.id) })
+            } catch (e: Exception) {
+                Log.d("ERROR", "Unknown Error: $e")
+                    error.postValue("Message update failed")
             }
         }
     }
 
+    suspend fun sendMessage(senderId: String, message: String): Boolean {
+        if (!modelReady) {
+            return false
+        }
+        var result = false
+        try {
+            val responseMessage = messageApiCaller.sendMessage(senderId, message)
+            if (responseMessage != null) {
+                val socialMessage = SocialMessage(
+                    responseMessage.id,
+                    responseMessage.userId,
+                    responseMessage.messageTimestamp.time,
+                    responseMessage.message
+                )
+                prependSocialData(listOf(socialMessage))
+                result = true
+
+            }else {
+                    error.postValue("Message delivery failed")
+            }
+        } catch (e: Exception) {
+            Log.d("ERROR", "Unknown Error: $e")
+                error.postValue("Message delivery failed")
+        }
+        return result
+    }
+
+    private fun appendSocialData(newData: List<SocialMessage>) {
+        existingMessageIds.addAll(newData.map { it.id })
+        socialMessageList.value = socialMessageList.value.orEmpty() + newData
+    }
+
+    private fun prependSocialData(newData: List<SocialMessage>) {
+        existingMessageIds.addAll(newData.map { it.id })
+        socialMessageList.value = newData + socialMessageList.value.orEmpty()
+    }
+    fun newMessagePoll(page: Int = 1) {
+        if (!modelReady) {
+            return
+        }
+        viewModelScope.launch {
+            try {
+                val apiData: List<MessageModel> = withContext(Dispatchers.IO) {
+                    messageApiCaller.getMessages(MessageGetQueryParams(page, null, null, null, null))
+                }
+                val socialMessages = apiData.map { messageModel ->
+                    SocialMessage(
+                        messageModel.id,
+                        messageModel.userId,
+                        messageModel.messageTimestamp.time,
+                        messageModel.message
+                    )
+                }
+                prependSocialData(socialMessages.filter { !existingMessageIds.contains(it.id) })
+            } catch (e: Exception) {
+                Log.d("ERROR", "Unknown Error: $e")
+                    error.postValue("Message update failed")
+            }
+        }
+    }
 }

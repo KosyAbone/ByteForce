@@ -7,6 +7,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.lang.ref.WeakReference
@@ -18,12 +20,28 @@ class MessageApiCaller {
         .add(KotlinJsonAdapterFactory())
         .add(DateAdapter()).build()
 
+    //Debug
+/*
+    val loggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    // Create an instance of OkHttpClient and add the logging interceptor
+    val httpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        // Add any other configurations to the OkHttpClient as needed
+        .build()
+
+ */
+    //End debug
+
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://byteforce-api.onrender.com")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
+        //.client(httpClient) // Set the custom OkHttpClient
         .build()
 
-    val messageApiService: MessageApiService = retrofit.create(MessageApiService::class.java)
+    private val messageApiService: MessageApiService = retrofit.create(MessageApiService::class.java)
 
     constructor(context: Context) {
         this.activityContext = WeakReference(context)
@@ -44,12 +62,12 @@ class MessageApiCaller {
 
                 if (responseBody != null) {
                     if (responseBody.messages.isEmpty()) {
-                        getContext()?.let { Utils.showSimpleToast("No items found", it) }
+                        getContext()?.let { Utils.showSimpleToast("No messages found", it) }
                     }
                 }
                 responseBody?.messages ?: emptyList()
             } else {
-                Log.d("ERROR", "Failed to get movie data from remote: ${response.code()}")
+                Log.d("ERROR", "Failed to get message data from remote: ${response.code()}")
                 getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
                 emptyList()
             }
@@ -68,7 +86,7 @@ class MessageApiCaller {
                 }
                 responseBody
             } else {
-                Log.d("ERROR", "Failed to get movie data from remote: ${response.code()}")
+                Log.d("ERROR", "Failed to get message data from remote: ${response.code()}")
                 getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
                 null
             }

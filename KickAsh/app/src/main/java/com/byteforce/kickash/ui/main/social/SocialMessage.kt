@@ -6,7 +6,7 @@ import java.util.Locale
 
 
 data class SocialMessage(
-    var _id: String,
+    var id: String,
     var senderId: String, //Probably the document id for the user, not sure what the format is yet
     var timestamp: Long, //Millisecond
     var messageBody: String
