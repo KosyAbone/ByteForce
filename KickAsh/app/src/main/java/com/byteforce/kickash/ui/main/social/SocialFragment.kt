@@ -1,9 +1,12 @@
 package com.byteforce.kickash.ui.main.social
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
@@ -45,6 +48,11 @@ class SocialFragment : Fragment() {
 
         adapter = SocialMessageAdapter(emptyList<SocialMessage>().toMutableList())
 
+        val sendMessageButton: ImageButton = binding.sendMessageButton
+        val messageField: EditText = binding.socialMessageSendField
+
+        sendMessageButton.isEnabled = false
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
         (recyclerView.layoutManager as LinearLayoutManager).reverseLayout = true;
@@ -58,7 +66,20 @@ class SocialFragment : Fragment() {
                 }
             }
         })
+        messageField.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not used, but required to implement the interface
+            }
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Check if the text is empty and disable the button accordingly
+                sendMessageButton.isEnabled = !s.isNullOrBlank()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Not used, but required to implement the interface
+            }
+        })
         socialViewModel.socialMessageList.observe(viewLifecycleOwner) { socialMessages ->
             adapter.updateMessages(socialMessages)
         }
@@ -74,7 +95,7 @@ class SocialFragment : Fragment() {
                 showViewModelErrorMessage(it)
             }
         }
-        val sendMessageButton: ImageButton = binding.sendMessageButton
+
         sendMessageButton.setOnClickListener {
             sendMessage()
         }
@@ -96,17 +117,20 @@ class SocialFragment : Fragment() {
         Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_SHORT).show()
     }
 
-    fun sendMessage() {
+    private fun sendMessage() {
         binding.sendMessageButton.isEnabled = false
         val messageField = binding.socialMessageSendField
         val message = messageField.text.toString()
         val senderId = "tester"
         lifecycleScope.launch {
             val result: Boolean = socialViewModel.sendMessage(senderId, message)
+            //Reset message field (and keep button blocked because empty field) if true
+            //Else unblock (since unsuccessful)
             if (result) {
                 messageField.setText("")
+            }else {
+                binding.sendMessageButton.isEnabled = true
             }
-            binding.sendMessageButton.isEnabled = true
         }
     }
 
