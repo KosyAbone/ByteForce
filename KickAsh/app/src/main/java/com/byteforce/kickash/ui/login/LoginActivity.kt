@@ -22,6 +22,8 @@ class LoginActivity : BaseActivity() {
         adapter.addFragment(SplashFragment(), "")
         adapter.addFragment(LoginFragment(), "")
         adapter.addFragment(UsernameLoginFragment(), "")
+        adapter.addFragment(RegisterFragment(), "")
+
 
         binding.vpAuth.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -49,7 +51,29 @@ class LoginActivity : BaseActivity() {
         binding.vpAuth.adapter = adapter
     }
 
-    fun goToUsernameLogin(){
-        binding.vpAuth.setCurrentItem(2,true)
+    fun goToUsernameLogin() {
+        binding.vpAuth.setCurrentItem(2, true)
+    }
+
+    fun goToRegister() {
+        binding.vpAuth.setCurrentItem(3, true)
+    }
+
+    override fun onBackPressed() {
+        when (binding.vpAuth.currentItem) {
+            3 -> {
+                binding.vpAuth.setCurrentItem(2, true)
+            }
+            2 -> {
+                binding.vpAuth.currentItem = 1
+            }
+            1 -> {
+                binding.vpAuth.currentItem = 0
+            }
+            else -> {
+                super.onBackPressed()
+            }
+        }
+
     }
 }
