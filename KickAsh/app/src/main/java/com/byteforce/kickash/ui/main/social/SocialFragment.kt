@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.size
+import android.widget.ImageButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.byteforce.kickash.R
-import com.byteforce.kickash.databinding.FragmentDashboardBinding
 import com.byteforce.kickash.databinding.FragmentSocialBinding
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAdapterListener {
+class SocialFragment : Fragment() {
+
+    private var isLoading = false // Flag to prevent multiple requests while waiting for a response
 
     private var _binding: FragmentSocialBinding? = null
 
@@ -25,13 +29,13 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private lateinit var socialViewModel: SocialViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val socialViewModel = ViewModelProvider(this).get(SocialViewModel::class.java)
+        socialViewModel = ViewModelProvider(this).get(SocialViewModel::class.java)
 
         _binding = FragmentSocialBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -39,17 +43,44 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
         recyclerView = binding.socialMessageRecyclerView
 
 
-        adapter = SocialMessageAdapter(emptyList(), this)
+        adapter = SocialMessageAdapter(emptyList<SocialMessage>().toMutableList())
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+        (recyclerView.layoutManager as LinearLayoutManager).reverseLayout = true;
 
-        socialViewModel.socialMessageList.observe(viewLifecycleOwner) {
-            adapter.updateMessages(it)
-            adapter?.notifyDataSetChanged()
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy < 0 && !recyclerView.canScrollVertically(-1)) {
+                    // User scrolled to the top
+                    socialViewModel.oldMessagePoll(adapter.getCurrentPageNumber()+1)
+                }
+            }
+        })
+
+        socialViewModel.socialMessageList.observe(viewLifecycleOwner) { socialMessages ->
+            adapter.updateMessages(socialMessages)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            while (true) {
+                socialViewModel.newMessagePoll()
+                delay(5000) // Wait for 5 seconds before the next call
+            }
+        }
+        socialViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                showViewModelErrorMessage(it)
+            }
+        }
+        val sendMessageButton: ImageButton = binding.sendMessageButton
+        sendMessageButton.setOnClickListener {
+            sendMessage()
         }
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -57,7 +88,26 @@ class SocialFragment : Fragment(), SocialMessageAdapter.SocialMessageRecyclerAda
     }
 
 
-    override fun onItemUpdate() {
-        adapter?.notifyDataSetChanged()
+
+
+    private fun showViewModelErrorMessage(errorMessage: String) {
+        val rootView = requireView()
+
+        Snackbar.make(rootView, errorMessage, Snackbar.LENGTH_SHORT).show()
     }
+
+    fun sendMessage() {
+        binding.sendMessageButton.isEnabled = false
+        val messageField = binding.socialMessageSendField
+        val message = messageField.text.toString()
+        val senderId = "tester"
+        lifecycleScope.launch {
+            val result: Boolean = socialViewModel.sendMessage(senderId, message)
+            if (result) {
+                messageField.setText("")
+            }
+            binding.sendMessageButton.isEnabled = true
+        }
+    }
+
 }
