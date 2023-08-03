@@ -150,38 +150,49 @@
                 android:layout_margin="16dp"
                 android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface"
-                android:text="Only Smoke 5 Cigarette per day"/>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:progress="25"
-                    android:layout_marginTop="12dp"
-                    app:trackCornerRadius="8dp"
-                    app:trackThickness="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="+1"/>
-
                 <TextView
+                    android:id="@+id/goalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:layout_gravity="end"
+                    android:text="Only Smoke 5 Cigarette per day"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:textStyle="bold"
-                    android:text="1/5"/>
+                    android:progress="20"
+                    app:trackCornerRadius="8dp"
+                    app:trackThickness="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/smokeCounterNumber"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="1"
+                        android:textSize="20sp"
+                        app:cornerRadius="8dp" />
+
+                    <Button
+                        android:id="@+id/smokeCounterButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="+"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
             </LinearLayout>
 

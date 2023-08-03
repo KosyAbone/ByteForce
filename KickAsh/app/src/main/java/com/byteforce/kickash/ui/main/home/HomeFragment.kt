@@ -1,5 +1,6 @@
 package com.byteforce.kickash.ui.main.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +68,24 @@ class HomeFragment : Fragment() {
 
         binding.mcvArticles.setOnClickListener {
             findNavController().navigate(R.id.articlesFragment)
+        }
+
+        binding.smokeCounterButton.setOnClickListener {
+            var cigaretteNumber = Integer.parseInt(binding.smokeCounterNumber.text.toString())
+            cigaretteNumber += 1
+
+            binding.smokeCounterNumber.text = cigaretteNumber.toString()
+
+            var progressBarNumber = binding.progressBar.progress
+            progressBarNumber += 20
+            binding.progressBar.progress = progressBarNumber
+
+            if(cigaretteNumber >= 5){
+                binding.goalText.text = "You have smoked more than 5 cigarettes!"
+                binding.goalText.setTextColor(Color.RED)
+
+                binding.progressBar.setIndicatorColor(Color.RED)
+            }
         }
 
     }
