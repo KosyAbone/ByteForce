@@ -1,6 +1,7 @@
 package com.byteforce.kickash.ui.questionair
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.byteforce.kickash.R
@@ -34,6 +35,10 @@ class Questionair1Activity: AppCompatActivity() {
 
         binding.btnOption3.setOnClickListener {
 
+            nextUI()
+        }
+
+        binding.btnSkip.setOnClickListener {
             nextUI()
         }
 

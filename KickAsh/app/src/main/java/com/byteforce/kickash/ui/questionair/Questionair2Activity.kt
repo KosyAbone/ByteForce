@@ -36,6 +36,10 @@ class Questionair2Activity: AppCompatActivity() {
             nextUI()
         }
 
+        binding.btnSkip.setOnClickListener {
+            nextUI()
+        }
+
 
     }
 
