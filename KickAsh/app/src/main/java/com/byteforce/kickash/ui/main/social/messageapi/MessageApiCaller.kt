@@ -62,13 +62,19 @@ class MessageApiCaller {
 
                 if (responseBody != null) {
                     if (responseBody.messages.isEmpty()) {
-                        getContext()?.let { Utils.showSimpleToast("No messages found", it) }
+
+                        withContext(Dispatchers.Main) {
+                            getContext()?.let { Utils.showSimpleToast("No messages found", it) }
+                        }
                     }
                 }
                 responseBody?.messages ?: emptyList()
             } else {
                 Log.d("ERROR", "Failed to get message data from remote: ${response.code()}")
-                getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
+
+                withContext(Dispatchers.Main) {
+                    getContext()?.let { Utils.showSimpleDialog("Error", "Unknown Error", it) }
+                }
                 emptyList()
             }
         }
@@ -82,12 +88,17 @@ class MessageApiCaller {
                 val responseBody: MessageModel? = response.body()
 
                 if (responseBody == null) {
-                    getContext()?.let { Utils.showSimpleToast("Failed to deliver message", it) }
+
+                    withContext(Dispatchers.Main) {
+                        getContext()?.let { Utils.showSimpleToast("Failed to deliver message", it) }
+                    }
                 }
                 responseBody
             } else {
                 Log.d("ERROR", "Failed to get message data from remote: ${response.code()}")
-                getContext()?.let { Utils.showSimpleDialog("Error","Unknown Error", it) }
+                withContext(Dispatchers.Main) {
+                    getContext()?.let { Utils.showSimpleDialog("Error", "Unknown Error", it) }
+                }
                 null
             }
         }
