@@ -15,6 +15,7 @@ class PreferenceLab(val context: Context) {
     private val mSharedPreferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(context)
 
+
     var toke: String
         get() = mSharedPreferences.getString(TOKEN, "")!!
         set(b) {
