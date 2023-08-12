@@ -63,8 +63,8 @@
                         android:layout_weight="1"
                         android:text="Your Points : 3000"
                         android:textColor="@color/md_theme_dark_inverseSurface"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
