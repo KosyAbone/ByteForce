@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 
@@ -92,9 +93,14 @@ class HomeFragment : Fragment() {
             }
         }
 
+        try {
+            generateHomeData()
+        }catch (e:Exception) {
+            e.printStackTrace()
+        }
     }
 
-    fun main() {
+    fun generateHomeData() {
 
         val sharedPrefs = requireActivity().getSharedPreferences(
             "QuestionnaireData", Context.MODE_PRIVATE
@@ -174,7 +180,9 @@ class HomeFragment : Fragment() {
             else -> 20.0
         }
 
-        val daysSmokeFree = daysBetweenDates("2023-08-13", answers["question9"] as String)
+       // val daysSmokeFree = daysBetweenDates("2023-08-13", answers["question9"] as String)
+        val daysSmokeFree = daysBetweenDates("2023-08-09", "2023-08-13")
+
 
         val moneySaved =
             cigarettesPerDay * daysSmokeFree * 7  // Assuming average cost per pack is $7
@@ -203,9 +211,14 @@ class HomeFragment : Fragment() {
 //        println("Cigarettes Not Smoked: $cigarettesNotSmoked cigarettes")
     }
 
-    fun daysBetweenDates(startDate: String, endDate: String): Int {
+    fun daysBetweenDates(startDate: String, endDate:String): Int {
+
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val start = sdf.parse(startDate)
+
+        val selectedGoal = Calendar.getInstance()
+       // val end = sdf.format(selectedGoal.getTime())
+
         val end = sdf.parse(endDate)
         val diff = end.time - start.time
         return (diff / (24 * 60 * 60 * 1000)).toInt()
