@@ -29,18 +29,18 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name="com.byteforce.kickash.ui.main.SlideShowActivity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair1Activity"         android:theme="@style/Theme.KickAsh"
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire1Activity"         android:theme="@style/Theme.KickAsh"
             />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair2Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair9Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair8Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair7Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair6Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair5Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair4Activity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair3Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire2Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire9Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire8Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire7Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire6Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire5Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire4Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.Questionnaire3Activity" />
         <activity android:name="com.byteforce.kickash.ui.main.articles.ArticlesDetailActivity" />
-        <activity android:name="com.byteforce.kickash.ui.questionair.Questionair10Activity" />
+        <activity android:name="com.byteforce.kickash.ui.questionair.QuestionnaireEndActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

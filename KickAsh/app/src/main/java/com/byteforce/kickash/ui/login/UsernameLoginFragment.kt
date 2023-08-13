@@ -6,13 +6,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
 import com.byteforce.kickash.data.api.KickAshApi
 import com.byteforce.kickash.data.api.LoginData
-import com.byteforce.kickash.ui.questionair.Questionair1Activity
-import com.facebook.login.Login
+import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -40,8 +38,20 @@ class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
         button.setOnClickListener {
 
             if(username.text.toString() == "test" && password.text.toString() == "test") {
+                val i = Intent(requireActivity(), Questionnaire1Activity::class.java)
+                requireContext().startActivity(i)
 
-              showChoice()
+//                MaterialAlertDialogBuilder(requireContext())
+//                    .setTitle("You want to start questionair ?")
+//                    .setPositiveButton("Yes") {
+//                        _,_ ->
+//                        val i = Intent(requireActivity(), Questionnaire1Activity::class.java)
+//                        requireContext().startActivity(i)
+//
+//                    }.setNegativeButton("No, To Home") { _,_ ->
+//                        val i = Intent(requireActivity(), MainActivity::class.java)
+//                        requireContext().startActivity(i)
+//                    }.show()
 
 
             }else {
@@ -84,11 +94,15 @@ class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
 
     fun showChoice(){
 
+        val i = Intent(requireActivity(), MainActivity::class.java)
+        requireContext().startActivity(i)
+
+        return
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("You want to start questionair ?")
             .setPositiveButton("Yes") {
                     _,_ ->
-                val i = Intent(requireActivity(), Questionair1Activity::class.java)
+                val i = Intent(requireActivity(), Questionnaire1Activity::class.java)
                 requireContext().startActivity(i)
 
             }.setNegativeButton("No, To Home") { _,_ ->

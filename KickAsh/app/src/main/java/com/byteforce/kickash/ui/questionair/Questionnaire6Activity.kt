@@ -3,17 +3,16 @@ package com.byteforce.kickash.ui.questionair
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.byteforce.kickash.R
-import com.byteforce.kickash.databinding.ActivityQuestionair7Binding
+import com.byteforce.kickash.databinding.ActivityQuestionnaire6Binding
 
-class Questionair7Activity: AppCompatActivity() {
+class Questionnaire6Activity: AppCompatActivity() {
 
 
-    private lateinit var binding: ActivityQuestionair7Binding
+    private lateinit var binding: ActivityQuestionnaire6Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityQuestionair7Binding.inflate(layoutInflater)
+        binding = ActivityQuestionnaire6Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUI()
@@ -21,18 +20,15 @@ class Questionair7Activity: AppCompatActivity() {
 
     fun initUI() {
 
-        binding.btnSkip.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             nextUI()
 
         }
 
-
-
-
     }
 
     fun nextUI() {
-        val i = Intent(this,Questionair8Activity::class.java)
+        val i = Intent(this,Questionnaire7Activity::class.java)
         startActivity(i)
     }
 

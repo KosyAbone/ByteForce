@@ -5,6 +5,18 @@
     android:layout_height="match_parent">
 
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:enabled="true"
+        android:text="Next"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/llOptions"
+        app:layout_constraintTop_toBottomOf="@+id/llOptions" />
+
     <TextView
         android:id="@+id/lbl12"
         android:layout_width="wrap_content"
@@ -12,7 +24,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="Question 3"
+        android:text="Question 9"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/lbl1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +34,12 @@
         android:id="@+id/lbl1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Whats your gender ?"
-        android:textSize="32sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:gravity="center"
+        android:text="By when do you want to see yourself free from smoking?"
         android:textColor="?attr/colorOnSurface"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/llOptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,50 +58,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOption1"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+        <TextView
+            android:id="@+id/calendarLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Male" />
+            android:text="Set the Date" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOption2"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+        <CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Female" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOption3"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Prefer not to say" />
-
-
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="Skip"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/llOptions"
-        app:layout_constraintTop_toBottomOf="@+id/llOptions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
