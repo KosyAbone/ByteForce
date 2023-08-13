@@ -1,6 +1,5 @@
 package com.byteforce.kickash.ui.login
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,14 +14,11 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
 import com.byteforce.kickash.databinding.FragmentLoginBinding
 import com.byteforce.kickash.ui.main.SlideShowActivity
-import com.byteforce.kickash.ui.questionair.Questionair1Activity
+import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -173,7 +169,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         Toast.makeText(requireContext(),"Welcome ${user!!.displayName}",Toast.LENGTH_SHORT).show()
 
-        val i = Intent(requireContext(), Questionair1Activity::class.java)
+        val i = Intent(requireContext(), Questionnaire1Activity::class.java)
         requireActivity().startActivity(i)
 
     }

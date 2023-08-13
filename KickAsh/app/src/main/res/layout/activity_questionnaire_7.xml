@@ -12,7 +12,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="Question 8"
+        android:text="Question 7"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/lbl1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,14 +20,12 @@
 
     <TextView
         android:id="@+id/lbl1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="What are your hobbies? (You can select more than one)"
-        android:textColor="?attr/colorOnSurface"
+        android:text="What prompted your decision to quit smoking?"
         android:textSize="32sp"
+        android:gravity="center"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@+id/llOptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,81 +39,56 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
-        android:paddingHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Photography"
-            app:useMaterialThemeColors="true" />
+            app:useMaterialThemeColors="true"
+            android:text="Health Concern" />
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Painting and Drawing"
-            app:useMaterialThemeColors="true" />
-
+            app:useMaterialThemeColors="true"
+            android:text="Family and loved ones" />
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Financial savings"
-            app:useMaterialThemeColors="true" />
-
+            app:useMaterialThemeColors="true"
+            android:text="Financial savings" />
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Playing Musical Instruments"
-            app:useMaterialThemeColors="true" />
-
+            app:useMaterialThemeColors="true"
+            android:text="Social Acceptance" />
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/btnOption5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cooking and Baking"
-            app:useMaterialThemeColors="true" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/btnOption6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crafting"
-            app:useMaterialThemeColors="true" />
-
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/btnOption7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hiking and Nature Walk"
-            app:useMaterialThemeColors="true" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/btnOption8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Other"
-            app:useMaterialThemeColors="true" />
+            app:useMaterialThemeColors="true"
+            android:text="Improve physical fitness" />
 
 
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSkip"
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:enabled="false"
         android:text="Next"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="@+id/llOptions"

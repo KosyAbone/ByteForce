@@ -1,19 +1,15 @@
 package com.byteforce.kickash.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
 import com.byteforce.kickash.data.api.KickAshApi
 import com.byteforce.kickash.data.api.RegistrationData
 import com.byteforce.kickash.data.api.RegistrationResponse
-import com.byteforce.kickash.ui.questionair.Questionair1Activity
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback

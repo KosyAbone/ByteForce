@@ -12,7 +12,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="Question 2"
+        android:text="Question 3"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/lbl1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,15 +20,12 @@
 
     <TextView
         android:id="@+id/lbl1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="How many cigarettes do you consume daily"
-        android:textColor="?attr/colorOnSurface"
+        android:text="Whats your gender ?"
         android:textSize="32sp"
-
+        android:gravity="center"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintBottom_toTopOf="@+id/llOptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +53,7 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Less than 10" />
+            android:text="Male" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnOption2"
@@ -66,7 +63,7 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Less than 20" />
+            android:text="Female" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -77,20 +74,9 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="20 or more" />
+            android:text="Prefer not to say" />
 
 
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="Skip"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/llOptions"
-        app:layout_constraintTop_toBottomOf="@+id/llOptions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
