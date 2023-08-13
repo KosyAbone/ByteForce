@@ -50,6 +50,7 @@ class ArticlesFragment : Fragment() {
 
         binding.rvArticles.adapter = ArticleAdapter(DataHub.articles) {
             val i = Intent(requireActivity(),ArticlesDetailActivity::class.java)
+            i.putExtra("data",it)
             requireActivity().startActivity(i)
 
         }
@@ -68,6 +69,7 @@ class ArticlesFragment : Fragment() {
             override fun onResponse(call: Call<List<ArticleModel>>, response: Response<List<ArticleModel>>) {
                 if (response.isSuccessful) {
                     val responseData = response.body()
+                    println("Response data $responseData")
                     responseData?.let {
 
                     } ?: run {

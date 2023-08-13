@@ -1,5 +1,7 @@
 package com.byteforce.kickash.ui.main.articles
 
+import java.io.Serializable
+
 data class ArticleModel(
     val id:Int,
     val title:String,
@@ -7,4 +9,4 @@ data class ArticleModel(
     val datePosted:String,
     val postedBy:String,
     var imageUrl:String = ""
-    )
+    ): Serializable
