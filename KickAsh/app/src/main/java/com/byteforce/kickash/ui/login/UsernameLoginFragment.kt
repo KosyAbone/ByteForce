@@ -41,21 +41,13 @@ class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
 
             if(username.text.toString() == "test" && password.text.toString() == "test") {
 
-                MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("You want to start questionair ?")
-                    .setPositiveButton("Yes") {
-                        _,_ ->
-                        val i = Intent(requireActivity(), Questionair1Activity::class.java)
-                        requireContext().startActivity(i)
-
-                    }.setNegativeButton("No, To Home") { _,_ ->
-                        val i = Intent(requireActivity(), MainActivity::class.java)
-                        requireContext().startActivity(i)
-                    }.show()
+              showChoice()
 
 
             }else {
-                Toast.makeText(requireActivity(),"Invalid username password",Toast.LENGTH_SHORT).show()
+
+                loginUser(username.text.toString(),password.text.toString())
+//                Toast.makeText(requireActivity(),"Invalid username password",Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -71,20 +63,21 @@ class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
                     val responseData = response.body()
                     responseData?.let {
                         val token = it["token"]
+                        showChoice()
                         if (token != null) {
                             // Save the token for future use
                         }
                       //  showChoice()
                     } ?: run {
-                        Log.e("LoginActivity", "Invalid response format.")
+                        showToast( "Invalid response format.")
                     }
                 } else {
-                    Log.e("LoginActivity", "Login failed.")
+                    showToast( "Login failed.")
                 }
             }
 
             override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
-                Log.e("LoginActivity", "Network error: ${t.message}")
+                showToast( "Network error: ${t.message}")
             }
         })
     }
@@ -102,6 +95,10 @@ class UsernameLoginFragment : Fragment(R.layout.fragment_username_login) {
                 val i = Intent(requireActivity(), MainActivity::class.java)
                 requireContext().startActivity(i)
             }.show()
+    }
+
+    fun showToast(msg:String) {
+        Toast.makeText(requireActivity(),msg,Toast.LENGTH_SHORT).show()
     }
 
 

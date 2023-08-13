@@ -49,8 +49,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
                 registerUser(
                     RegistrationData(
-                        firstName = "",
-                        lastName = "",
+                        firstName = "Default",
+                        lastName = "Default",
                         password = password.text.toString(),
                         username = username.text.toString(),
                         email = email.text.toString()
@@ -81,7 +81,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                         requireActivity().onBackPressed()
 
                     } ?: run {
-                        Log.e("RegisterActivity", "Invalid response format.")
+                        showToast("Invalid response format.")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
@@ -91,14 +91,18 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    Log.e("RegisterActivity", "Error: $errorBody")
+                    showToast( "Error: $errorBody")
                 }
             }
 
             override fun onFailure(call: Call<RegistrationResponse>, t: Throwable) {
-                Log.e("RegisterActivity", "Network error: ${t.message}")
+                showToast( "Network error: ${t.message}")
             }
         })
+    }
+
+    fun showToast(msg:String) {
+        Toast.makeText(requireActivity(),msg,Toast.LENGTH_SHORT).show()
     }
 
 }

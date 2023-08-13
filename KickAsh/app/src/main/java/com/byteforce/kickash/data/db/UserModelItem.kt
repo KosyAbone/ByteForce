@@ -22,7 +22,7 @@ data class UserModelItem(
  *       username:String,
  *       gender :String
  *       Questionair -> {
- *              start_smoking: String
+ *              start_smoking_date: String
  *              no_of_cigartee_per_day :String,
  *              feel_smoking: String,
  *              trigger_smoking:String,
