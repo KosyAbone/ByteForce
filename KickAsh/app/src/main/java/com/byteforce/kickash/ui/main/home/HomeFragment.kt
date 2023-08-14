@@ -125,6 +125,7 @@ class HomeFragment : Fragment() {
 
         val cigarettesNotSmoked = daysSmokeFree * cigarettesPerDay
 
+
         println("Statistics:")
         println("Days Smoke-Free: $daysSmokeFree days")
         println("Money Saved: $$moneySaved")
