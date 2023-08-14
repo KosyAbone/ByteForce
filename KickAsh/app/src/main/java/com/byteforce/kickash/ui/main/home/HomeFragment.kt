@@ -14,6 +14,8 @@ import com.byteforce.kickash.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class HomeFragment : Fragment() {
@@ -88,6 +90,55 @@ class HomeFragment : Fragment() {
             }
         }
 
+    }
+
+    fun main() {
+        val answers = mapOf(
+            "question1" to "It's been more than 5 years",
+            "question2" to "Less than 10",
+            "question3" to "Male",
+            "question4" to "Stress free",
+            "question5" to "Stress",
+            "question7" to "Health Concern",
+            "question8" to "Photography",
+            "question9" to "2023-12-31",
+            "question10" to 40.0
+        )
+
+        val cigarettesPerDay = when (answers["question2"]) {
+            "Less than 10" -> 5.0
+            "Less than 20" -> 15.0
+            else -> 20.0
+        }
+
+        val daysSmokeFree = daysBetweenDates("2023-08-13", answers["question9"] as String)
+
+        val moneySaved = cigarettesPerDay * daysSmokeFree * 7  // Assuming average cost per pack is $7
+
+        val lifeGainedMinutes = daysSmokeFree * cigarettesPerDay * 11  // Average lifespan reduction per cigarette is 11 minutes
+
+        val heartRateImprovement = when (answers["question5"]) {
+            "Stress" -> "Moderate improvement"
+            "Anxiety" -> "Significant improvement"
+            else -> "No significant improvement"
+        }
+
+        val cigarettesNotSmoked = daysSmokeFree * cigarettesPerDay
+
+        println("Statistics:")
+        println("Days Smoke-Free: $daysSmokeFree days")
+        println("Money Saved: $$moneySaved")
+        println("Life Gained: $lifeGainedMinutes minutes")
+        println("Heart Rate Improvement: $heartRateImprovement")
+        println("Cigarettes Not Smoked: $cigarettesNotSmoked cigarettes")
+    }
+
+    fun daysBetweenDates(startDate: String, endDate: String): Int {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val start = sdf.parse(startDate)
+        val end = sdf.parse(endDate)
+        val diff = end.time - start.time
+        return (diff / (24 * 60 * 60 * 1000)).toInt()
     }
 
 
