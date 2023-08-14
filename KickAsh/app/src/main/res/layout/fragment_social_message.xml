@@ -24,13 +24,12 @@
             android:layout_weight="0"
             android:orientation="vertical">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/socialMessageUserImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_gravity="center"
                 android:layout_weight="0"
-                tools:srcCompat="@color/black" />
+                android:src="@android:drawable/btn_star" />
 
             <TextView
                 android:id="@+id/socialMessageUserDisplayName"
