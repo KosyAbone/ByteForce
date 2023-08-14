@@ -16,10 +16,10 @@ object KickAshApi {
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(OkHttpClient().newBuilder().addInterceptor(HttpLoggingInterceptor()).build())
-        .baseUrl("https://api-kickash-8fefbb641f24.herokuapp.com//").build()
+        .baseUrl("https://api-kickash-8fefbb641f24.herokuapp.com/").build()
 
     val retrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-    
+
 }
