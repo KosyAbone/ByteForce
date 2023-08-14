@@ -46,14 +46,12 @@
             android:layout_weight="0"
             android:orientation="vertical">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/socialSelfMessageUserImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_gravity="center"
                 android:layout_weight="0"
-                android:backgroundTint="#FF0000"
-                tools:srcCompat="@android:color/holo_red_dark" />
+                android:src="@android:drawable/btn_star" />
 
             <TextView
                 android:id="@+id/socialMessageUserSelfDisplayName"
