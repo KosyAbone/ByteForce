@@ -60,7 +60,7 @@ class SocialViewModel(application: Application) : AndroidViewModel(application) 
 
             if (retries == maxRetries) {
                 val context = getApplication<Application>()
-                    error.postValue("We are experiencing an unexpected issue, please try again later or contact us for assistance")
+                error.postValue("We are experiencing an unexpected issue, please try again later or contact us for assistance")
 
             }
             modelReady = true
