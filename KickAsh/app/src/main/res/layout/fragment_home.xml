@@ -311,6 +311,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/tvMoneySavedOrig"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="12dp"
@@ -407,6 +408,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/tvNoOfCigarette"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="12dp"

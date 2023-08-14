@@ -60,9 +60,12 @@ class Questionnaire1Activity: AppCompatActivity() {
             val question3 = "What is your gender? - "
             val question4 = "How do you feel about smoking? - "
             val question5 = "What triggers you to smoke? - "
+            val question6 = "What triggers you to smoke? - "
+
             val question7 = "What prompted your decision to quit smoking? - "
             val question8 = "What are your hobbies? - "
             val question9 = "By when do you want to see yourself free from smoking? - "
+            val question10 = "How stressfull can you be."
         }
     }
 

@@ -1,5 +1,6 @@
 package com.byteforce.kickash.ui.questionair
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,14 @@ class Questionnaire6Activity: AppCompatActivity() {
     }
 
     fun nextUI() {
+
+        val sharedPrefs = this.getSharedPreferences(
+            "QuestionnaireData", Context.MODE_PRIVATE)
+        with(sharedPrefs.edit()){
+            putString(Questionnaire1Activity.QuestionnaireConstants.question10 + "test", binding.sliderValue.value.toInt().toString())
+            commit()
+        }
+
         val i = Intent(this,Questionnaire7Activity::class.java)
         startActivity(i)
     }

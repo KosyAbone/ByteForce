@@ -1,5 +1,6 @@
 package com.byteforce.kickash.ui.main.home
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.byteforce.kickash.R
 import com.byteforce.kickash.databinding.FragmentHomeBinding
+import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
@@ -82,7 +84,7 @@ class HomeFragment : Fragment() {
             progressBarNumber += 20
             binding.progressBar.progress = progressBarNumber
 
-            if(cigaretteNumber >= 5){
+            if (cigaretteNumber >= 5) {
                 binding.goalText.text = "You have smoked more than 5 cigarettes!"
                 binding.goalText.setTextColor(Color.RED)
 
@@ -93,16 +95,77 @@ class HomeFragment : Fragment() {
     }
 
     fun main() {
+
+        val sharedPrefs = requireActivity().getSharedPreferences(
+            "QuestionnaireData", Context.MODE_PRIVATE
+        )
+//        with(sharedPrefs.edit()){
+//            putString(com.byteforce.kickash.ui.questionair.Questionnaire1Activity.QuestionnaireConstants.question1 + username, answer)
+//            commit()
+//        }
+
+        val username = "test"
+        val question1Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question1 + username,
+            ""
+        )
+        val question2Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question2 + username,
+            ""
+        )
+        val question3Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question3 + username,
+            ""
+        )
+        val question4Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question4 + username,
+            ""
+        )
+        val question5Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question5 + username,
+            ""
+        )
+//        val question6Answer = sharedPrefs.getString(Questionnaire1Activity.QuestionnaireConstants.question6+username,"")
+        val question7Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question7 + username,
+            ""
+        )
+        val question8Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question8 + username,
+            ""
+        )
+        val question9Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question9 + username,
+            ""
+        )
+        val question10Answer = sharedPrefs.getString(
+            Questionnaire1Activity.QuestionnaireConstants.question10 + username,
+            ""
+        )
+
+
+//        val answers = mapOf(
+//            "question1" to "It's been more than 5 years",
+//            "question2" to "Less than 10",
+//            "question3" to "Male",
+//            "question4" to "Stress free",
+//            "question5" to "Stress",
+//            "question7" to "Health Concern",
+//            "question8" to "Photography",
+//            "question9" to "2023-12-31",
+//            "question10" to 40.0
+//        )
+
         val answers = mapOf(
-            "question1" to "It's been more than 5 years",
-            "question2" to "Less than 10",
-            "question3" to "Male",
-            "question4" to "Stress free",
-            "question5" to "Stress",
-            "question7" to "Health Concern",
-            "question8" to "Photography",
-            "question9" to "2023-12-31",
-            "question10" to 40.0
+            "question1" to question1Answer,
+            "question2" to question2Answer,
+            "question3" to question3Answer,
+            "question4" to question4Answer,
+            "question5" to question5Answer,
+            "question7" to question7Answer,
+            "question8" to question8Answer,
+            "question9" to question9Answer,
+            "question10" to Integer.parseInt(question10Answer)
         )
 
         val cigarettesPerDay = when (answers["question2"]) {
@@ -113,9 +176,11 @@ class HomeFragment : Fragment() {
 
         val daysSmokeFree = daysBetweenDates("2023-08-13", answers["question9"] as String)
 
-        val moneySaved = cigarettesPerDay * daysSmokeFree * 7  // Assuming average cost per pack is $7
+        val moneySaved =
+            cigarettesPerDay * daysSmokeFree * 7  // Assuming average cost per pack is $7
 
-        val lifeGainedMinutes = daysSmokeFree * cigarettesPerDay * 11  // Average lifespan reduction per cigarette is 11 minutes
+        val lifeGainedMinutes =
+            daysSmokeFree * cigarettesPerDay * 11  // Average lifespan reduction per cigarette is 11 minutes
 
         val heartRateImprovement = when (answers["question5"]) {
             "Stress" -> "Moderate improvement"
@@ -125,13 +190,17 @@ class HomeFragment : Fragment() {
 
         val cigarettesNotSmoked = daysSmokeFree * cigarettesPerDay
 
+        binding.tvMoneySaved.text = ""+lifeGainedMinutes+" minutes" // life take back
+        binding.tvMoneySavedOrig.text = "$moneySaved"
+        binding.tvMoneySaved2.text = heartRateImprovement
+        binding.tvNoOfCigarette.text = "$cigarettesNotSmoked"
 
-        println("Statistics:")
-        println("Days Smoke-Free: $daysSmokeFree days")
-        println("Money Saved: $$moneySaved")
-        println("Life Gained: $lifeGainedMinutes minutes")
-        println("Heart Rate Improvement: $heartRateImprovement")
-        println("Cigarettes Not Smoked: $cigarettesNotSmoked cigarettes")
+//        println("Statistics:")
+//        println("Days Smoke-Free: $daysSmokeFree days")
+//        println("Money Saved: $$moneySaved")
+//        println("Life Gained: $lifeGainedMinutes minutes")
+//        println("Heart Rate Improvement: $heartRateImprovement")
+//        println("Cigarettes Not Smoked: $cigarettesNotSmoked cigarettes")
     }
 
     fun daysBetweenDates(startDate: String, endDate: String): Int {
