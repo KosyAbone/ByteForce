@@ -121,7 +121,7 @@ class SocialFragment : Fragment() {
         binding.sendMessageButton.isEnabled = false
         val messageField = binding.socialMessageSendField
         val message = messageField.text.toString()
-        val senderId = "tester"
+        val senderId = "Anonymous"
         lifecycleScope.launch {
             val result: Boolean = socialViewModel.sendMessage(senderId, message)
             //Reset message field (and keep button blocked because empty field) if true
