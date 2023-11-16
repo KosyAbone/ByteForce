@@ -81,7 +81,7 @@ class QuestionnaireEndActivity: AppCompatActivity() {
         KickAshApp.globalUserData = userData
 
         // Save the user data to Firestore
-        userDocumentRef.set(userMap)
+        userDocumentRef.set(userData)
             .addOnSuccessListener {
                 // Data saved successfully
 

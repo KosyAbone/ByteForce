@@ -233,11 +233,7 @@ class Questionnaire8Activity: AppCompatActivity() {
         }
 
 
-        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
-            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
-                hobbies = answer.split(",")
-            )
-        )
+        KickAshApp.globalUserData.questionnaire.hobbies = answer.split(",")
 
         val i = Intent(this,Questionnaire9Activity::class.java)
         startActivity(i)

@@ -55,7 +55,7 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="It's been more than 5 years" />
+            android:text="Less than 5 year ago" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnOption2"
@@ -65,7 +65,7 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="It's been a year or two" />
+            android:text="Less than 1 year ago" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -76,7 +76,7 @@
             android:layout_margin="16dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Less than a year" />
+            android:text="Less than 6 months" />
 
 
     </LinearLayout>

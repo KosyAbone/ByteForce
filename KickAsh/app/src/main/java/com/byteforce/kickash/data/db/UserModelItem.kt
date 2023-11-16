@@ -2,6 +2,7 @@ package com.byteforce.kickash.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.firestore.PropertyName
 
 @Entity(tableName = "user_table")
 data class UserModelItem(
@@ -53,26 +54,43 @@ data class UserModelItem(
  */
 
 data class FbUserData(
+    @PropertyName("displayName")
     val displayName: String = "",
+    @PropertyName("email")
     val email: String = "",
+    @PropertyName("username")
     val username: String = "",
-    val gender: String = "",
+    @PropertyName("gender")
+    var gender: String = "",
+    @PropertyName("questionnaire")
     val questionnaire: FbQuestionnaire = FbQuestionnaire(),
+    @PropertyName("smokingHistory")
     val smokingHistory: List<FbSmokingHistory> = listOf()
 )
 
 data class FbQuestionnaire(
-    val startSmokingDate: String = "",
-    val noOfCigarettePerDay: String = "",
-    val feelSmoking: String = "",
-    val triggerSmoking: String = "",
-    val stressfulMeter: Int = 0,
-    val promptDecision: String = "",
-    val hobbies: List<String> = listOf()
+
+    @PropertyName("start_smoking_date")
+    var startSmokingDate: String = "",
+    @PropertyName("no_of_cigarette_per_day")
+    var noOfCigarettePerDay: String = "",
+    @PropertyName("feel_smoking")
+    var feelSmoking: String = "",
+    @PropertyName("trigger_smoking")
+    var triggerSmoking: String = "",
+    @PropertyName("stressful_meter")
+    var stressfulMeter: Int = 0,
+    @PropertyName("prompt_decision")
+    var promptDecision: String = "",
+    @PropertyName("hobbies")
+    var hobbies: List<String> = listOf()
 )
 
 data class FbSmokingHistory(
+    @PropertyName("id")
     val id: Int = 0,
+    @PropertyName("date_time")
     val dateTime: Long = 0L,
+    @PropertyName("is_relapsed")
     val isRelapsed: Boolean = false
 )

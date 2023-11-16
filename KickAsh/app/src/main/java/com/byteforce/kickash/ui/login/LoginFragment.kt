@@ -248,33 +248,35 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val userDocumentRef = db.collection("users").document(user.uid)
 
         // Create a map to represent the user data
-        val userMap = hashMapOf(
-            "displayName" to userData.displayName,
-            "email" to userData.email,
-            "username" to userData.username,
-            "gender" to userData.gender,
-            "questionnaire" to hashMapOf(
-                "start_smoking_date" to userData.questionnaire.startSmokingDate,
-                "no_of_cigarette_per_day" to userData.questionnaire.noOfCigarettePerDay,
-                "feel_smoking" to userData.questionnaire.feelSmoking,
-                "trigger_smoking" to userData.questionnaire.triggerSmoking,
-                "stressful_meter" to userData.questionnaire.stressfulMeter,
-                "prompt_decision" to userData.questionnaire.promptDecision,
-                "hobbies" to userData.questionnaire.hobbies
-            ),
-            "smokingHistory" to userData.smokingHistory.map {
-                hashMapOf(
-                    "id" to it.id,
-                    "date_time" to it.dateTime,
-                    "is_relapsed" to it.isRelapsed
-                )
-            }
-        )
+//        val data = FbUserData(
+//        )
+//        val userMap = hashMapOf(
+//            "displayName" to userData.displayName,
+//            "email" to userData.email,
+//            "username" to userData.username,
+//            "gender" to userData.gender,
+//            "questionnaire" to hashMapOf(
+//                "start_smoking_date" to userData.questionnaire.startSmokingDate,
+//                "no_of_cigarette_per_day" to userData.questionnaire.noOfCigarettePerDay,
+//                "feel_smoking" to userData.questionnaire.feelSmoking,
+//                "trigger_smoking" to userData.questionnaire.triggerSmoking,
+//                "stressful_meter" to userData.questionnaire.stressfulMeter,
+//                "prompt_decision" to userData.questionnaire.promptDecision,
+//                "hobbies" to userData.questionnaire.hobbies
+//            ),
+//            "smokingHistory" to userData.smokingHistory.map {
+//                hashMapOf(
+//                    "id" to it.id,
+//                    "date_time" to it.dateTime,
+//                    "is_relapsed" to it.isRelapsed
+//                )
+//            }
+//        )
 
         KickAshApp.globalUserData = userData
 
         // Save the user data to Firestore
-        userDocumentRef.set(userMap)
+        userDocumentRef.set(userData)
             .addOnSuccessListener {
                 // Data saved successfully
 

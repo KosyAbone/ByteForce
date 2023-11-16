@@ -49,11 +49,7 @@ class Questionnaire4Activity: AppCompatActivity() {
             commit()
         }
 
-        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
-            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
-                feelSmoking = answer
-            )
-        )
+        KickAshApp.globalUserData.questionnaire.feelSmoking = answer
 
         val i = Intent(this,Questionnaire5Activity::class.java)
         startActivity(i)

@@ -144,11 +144,8 @@ class Questionnaire7Activity: AppCompatActivity() {
             commit()
         }
 
-        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
-            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
-                promptDecision = answer
-            )
-        )
+        KickAshApp.globalUserData.questionnaire.promptDecision = answer
+
 
         val i = Intent(this,Questionnaire8Activity::class.java)
         startActivity(i)

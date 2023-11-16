@@ -49,9 +49,7 @@ class Questionnaire3Activity: AppCompatActivity() {
             commit()
         }
 
-        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
-           gender = answer
-        )
+        KickAshApp.globalUserData.gender = answer
 
         val i = Intent(this,Questionnaire4Activity::class.java)
         startActivity(i)

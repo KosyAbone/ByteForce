@@ -12,11 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.byteforce.kickash.R
 import com.byteforce.kickash.data.db.FbUserData
 import com.byteforce.kickash.databinding.FragmentHomeBinding
-import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 
@@ -27,7 +27,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
 
     var user = FirebaseAuth.getInstance().currentUser
 
@@ -95,8 +94,7 @@ class HomeFragment : Fragment() {
         try {
 
             getUserDataFromFirestore(FirebaseAuth.getInstance().currentUser!!.uid!!) {
-                generateHomeData(it)
-
+                generateHomeData(it!!)
             }
 
 
@@ -120,11 +118,12 @@ class HomeFragment : Fragment() {
             }
             .addOnFailureListener { e ->
                 // Handle the failure
+                e.printStackTrace()
                 onComplete(null)
             }
     }
 
-    fun generateHomeData(fbUserData: FbUserData?) {
+    fun generateHomeData(fbUserData: FbUserData) {
 
 
         val sharedPrefs = requireActivity().getSharedPreferences(
@@ -135,44 +134,39 @@ class HomeFragment : Fragment() {
 //            commit()
 //        }
 
+        val question1 = "When did you start smoking? - "
+        val question2 = "How many cigarettes do you consume daily on an average? - "
+        val question3 = "What is your gender? - "
+        val question4 = "How do you feel about smoking? - "
+        val question5 = "What triggers you to smoke? - "
+        val question6 = "What triggers you to smoke? - "
+
+        val question7 = "What prompted your decision to quit smoking? - "
+        val question8 = "What are your hobbies? - "
+        val question9 = "By when do you want to see yourself free from smoking? - "
+        val question10 = "How stressfull can you be."
+
+
         val username = "test"
-        val question1Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question1 + username,
-            ""
-        )
-        val question2Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question2 + username,
-            ""
-        )
-        val question3Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question3 + username,
-            ""
-        )
-        val question4Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question4 + username,
-            ""
-        )
-        val question5Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question5 + username,
-            ""
-        )
+        val question1Answer = fbUserData.questionnaire.startSmokingDate
+
+        val question2Answer = fbUserData.questionnaire.noOfCigarettePerDay
+
+        val question3Answer = fbUserData.gender
+
+
+        val question4Answer = fbUserData.questionnaire.feelSmoking
+
+        val question5Answer = fbUserData.questionnaire.triggerSmoking
+
 //        val question6Answer = sharedPrefs.getString(Questionnaire1Activity.QuestionnaireConstants.question6+username,"")
-        val question7Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question7 + username,
-            ""
-        )
-        val question8Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question8 + username,
-            ""
-        )
-        val question9Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question9 + username,
-            ""
-        )
-        val question10Answer = sharedPrefs.getString(
-            Questionnaire1Activity.QuestionnaireConstants.question10 + username,
-            ""
-        )
+        val question7Answer = fbUserData.questionnaire.promptDecision
+
+        val question8Answer = fbUserData.questionnaire.hobbies
+
+        val question9Answer = fbUserData.questionnaire.hobbies
+
+        val question10Answer = fbUserData.questionnaire.stressfulMeter
 
 
 //        val answers = mapOf(
@@ -196,7 +190,7 @@ class HomeFragment : Fragment() {
             "question7" to question7Answer,
             "question8" to question8Answer,
             "question9" to question9Answer,
-            "question10" to Integer.parseInt(question10Answer)
+            "question10" to question10Answer
         )
 
         val cigarettesPerDay = when (answers["question2"]) {
@@ -206,7 +200,15 @@ class HomeFragment : Fragment() {
         }
 
        // val daysSmokeFree = daysBetweenDates("2023-08-13", answers["question9"] as String)
-        val daysSmokeFree = daysBetweenDates("2023-08-09", "2023-08-13")
+
+        val currentDate = Date()
+
+        // Define the desired format
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        // Format the date
+        val formattedDate = dateFormat.format(currentDate)
+
+        val daysSmokeFree = daysBetweenDates(question1Answer, formattedDate)
 
 
         val moneySaved =

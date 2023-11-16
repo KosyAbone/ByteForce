@@ -38,11 +38,7 @@ class Questionnaire6Activity: AppCompatActivity() {
             commit()
         }
 
-        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
-            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
-                stressfulMeter = binding.sliderValue.value.toInt()
-            )
-        )
+        KickAshApp.globalUserData.questionnaire.stressfulMeter = binding.sliderValue.value.toInt()
 
         val i = Intent(this,Questionnaire7Activity::class.java)
         startActivity(i)
