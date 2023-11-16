@@ -15,7 +15,10 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.byteforce.kickash.KickAshApp
+import com.byteforce.kickash.MainActivity
 import com.byteforce.kickash.R
+import com.byteforce.kickash.data.db.FbUserData
 import com.byteforce.kickash.databinding.FragmentLoginBinding
 import com.byteforce.kickash.ui.main.SlideShowActivity
 import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
@@ -28,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -49,9 +53,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         initGoogleLogin()
 
-        binding.btnFacebookLogin.setOnClickListener {
-            openSlideShow()
-        }
+//        binding.btnFacebookLogin.setOnClickListener {
+//            openSlideShow()
+//        }
 
         binding.btnGoogleLogin.setOnClickListener {
             signIn()
@@ -130,7 +134,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
 
-        private fun initPrivacyPolicy() {
+    private fun initPrivacyPolicy() {
 
 
         binding.tvPrivacyPolicy.makeLinks(
@@ -165,15 +169,126 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun updateUI(user: FirebaseUser?) {
 
-        if(user == null) return
+        if (user == null) return
 
-        Toast.makeText(requireContext(),"Welcome ${user!!.displayName}",Toast.LENGTH_SHORT).show()
 
-        val i = Intent(requireContext(), Questionnaire1Activity::class.java)
-        requireActivity().startActivity(i)
+        checkIfitisFirstTime(user)
+
 
     }
 
+
+    fun checkIfitisFirstTime(user: FirebaseUser) {
+        val db = FirebaseFirestore.getInstance()
+        val userDocumentRef = db.collection("users").document(user.uid)
+
+        // Check if the user already has data
+        userDocumentRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val existingFirstName = documentSnapshot.getString("displayName")
+                    if (existingFirstName.isNullOrBlank()) {
+
+                        val userData = FbUserData(displayName = user.displayName ?: "Anon")
+                        saveFirstTimeUser(user, userData)
+
+                    } else {
+
+
+                        getUserDataFromFirestore(user.uid) {
+                            KickAshApp.globalUserData = it!!
+
+                            Toast.makeText(requireContext(), "Welcome ${user!!.displayName}", Toast.LENGTH_SHORT).show()
+
+                            val i = Intent(requireContext(), MainActivity::class.java)
+                            requireActivity().startActivity(i)
+
+                        }
+
+
+
+                        // Existing data has a firstName, handle accordingly
+                    }
+                } else {
+                    // No existing data, save new data
+                    val userData = FbUserData(displayName = user.displayName ?: "Anon")
+
+                    saveFirstTimeUser(user, userData)
+                }
+            }
+            .addOnFailureListener { e ->
+                // Handle the failure
+                e.printStackTrace()
+                Toast.makeText(requireContext(),"Cannot register. Try again later..",Toast.LENGTH_SHORT).show()
+
+            }
+    }
+
+    fun getUserDataFromFirestore(userId: String, onComplete: (FbUserData?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val userDocumentRef = db.collection("users").document(userId)
+
+        userDocumentRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val userData = document.toObject(FbUserData::class.java)
+                    onComplete(userData)
+                } else {
+                    onComplete(null)
+                }
+            }
+            .addOnFailureListener { e ->
+                // Handle the failure
+                onComplete(null)
+            }
+    }
+
+    private fun saveFirstTimeUser(user: FirebaseUser, userData: FbUserData) {
+        val db = FirebaseFirestore.getInstance()
+        val userDocumentRef = db.collection("users").document(user.uid)
+
+        // Create a map to represent the user data
+        val userMap = hashMapOf(
+            "displayName" to userData.displayName,
+            "email" to userData.email,
+            "username" to userData.username,
+            "gender" to userData.gender,
+            "questionnaire" to hashMapOf(
+                "start_smoking_date" to userData.questionnaire.startSmokingDate,
+                "no_of_cigarette_per_day" to userData.questionnaire.noOfCigarettePerDay,
+                "feel_smoking" to userData.questionnaire.feelSmoking,
+                "trigger_smoking" to userData.questionnaire.triggerSmoking,
+                "stressful_meter" to userData.questionnaire.stressfulMeter,
+                "prompt_decision" to userData.questionnaire.promptDecision,
+                "hobbies" to userData.questionnaire.hobbies
+            ),
+            "smokingHistory" to userData.smokingHistory.map {
+                hashMapOf(
+                    "id" to it.id,
+                    "date_time" to it.dateTime,
+                    "is_relapsed" to it.isRelapsed
+                )
+            }
+        )
+
+        KickAshApp.globalUserData = userData
+
+        // Save the user data to Firestore
+        userDocumentRef.set(userMap)
+            .addOnSuccessListener {
+                // Data saved successfully
+
+                val i = Intent(requireContext(), Questionnaire1Activity::class.java)
+                requireActivity().startActivity(i)
+
+            }
+            .addOnFailureListener { e ->
+
+                e.printStackTrace()
+                Toast.makeText(requireContext(),"Cannot register. Try again later..",Toast.LENGTH_SHORT).show()
+                // Handle the failure
+            }
+    }
 
 
     companion object {

@@ -51,3 +51,28 @@ data class UserModelItem(
  *
  * }
  */
+
+data class FbUserData(
+    val displayName: String = "",
+    val email: String = "",
+    val username: String = "",
+    val gender: String = "",
+    val questionnaire: FbQuestionnaire = FbQuestionnaire(),
+    val smokingHistory: List<FbSmokingHistory> = listOf()
+)
+
+data class FbQuestionnaire(
+    val startSmokingDate: String = "",
+    val noOfCigarettePerDay: String = "",
+    val feelSmoking: String = "",
+    val triggerSmoking: String = "",
+    val stressfulMeter: Int = 0,
+    val promptDecision: String = "",
+    val hobbies: List<String> = listOf()
+)
+
+data class FbSmokingHistory(
+    val id: Int = 0,
+    val dateTime: Long = 0L,
+    val isRelapsed: Boolean = false
+)

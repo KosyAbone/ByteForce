@@ -203,12 +203,6 @@ class HomeFragment : Fragment() {
         binding.tvMoneySaved2.text = heartRateImprovement
         binding.tvNoOfCigarette.text = "$cigarettesNotSmoked"
 
-//        println("Statistics:")
-//        println("Days Smoke-Free: $daysSmokeFree days")
-//        println("Money Saved: $$moneySaved")
-//        println("Life Gained: $lifeGainedMinutes minutes")
-//        println("Heart Rate Improvement: $heartRateImprovement")
-//        println("Cigarettes Not Smoked: $cigarettesNotSmoked cigarettes")
     }
 
     fun daysBetweenDates(startDate: String, endDate:String): Int {
