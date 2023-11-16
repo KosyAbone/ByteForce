@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/smoke_counter_background_container"
+    android:orientation="vertical"
+    android:theme="@style/Theme.KickAsh.AppWidgetContainer">
+
+    <TextView
+        android:id="@+id/smokeCounterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/smokeCounterTitle"
+        android:gravity="center"
+        android:text="@string/smokeCounterTitle"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetSmokeRecordDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="N/A"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/smokeCounterAddRecButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:text="@string/smokeCounterAddButton" />
+
+</LinearLayout>
