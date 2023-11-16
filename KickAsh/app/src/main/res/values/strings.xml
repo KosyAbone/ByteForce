@@ -8,5 +8,9 @@
     <string name="your_web_client_id">684826609112-tkcpm2t5ipk3ft3p5du4f8h3vkn11aqj.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="smokeCounterTitle">Your Last Smoke Record</string>
+    <string name="smokeCounterAddButton">Add Record</string>
+    <string name="add_widget">Add widget</string>
+    <string name="smokeCounterDescription">Track your smoke activity directly with this widget</string>
 
 </resources>
