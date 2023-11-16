@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.byteforce.kickash.KickAshApp
 import com.byteforce.kickash.databinding.ActivityQuestionnaire9Binding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -60,6 +61,8 @@ class Questionnaire9Activity: AppCompatActivity() {
             putString(Questionnaire1Activity.QuestionnaireConstants.question9 + username, answer.toString())
             commit()
         }
+
+
 
         val i = Intent(this,QuestionnaireEndActivity::class.java)
         startActivity(i)

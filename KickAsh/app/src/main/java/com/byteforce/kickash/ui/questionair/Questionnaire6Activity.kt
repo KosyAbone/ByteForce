@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.byteforce.kickash.KickAshApp
 import com.byteforce.kickash.databinding.ActivityQuestionnaire6Binding
 
 class Questionnaire6Activity: AppCompatActivity() {
@@ -36,6 +37,12 @@ class Questionnaire6Activity: AppCompatActivity() {
             putString(Questionnaire1Activity.QuestionnaireConstants.question10 + "test", binding.sliderValue.value.toInt().toString())
             commit()
         }
+
+        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
+            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
+                stressfulMeter = binding.sliderValue.value.toInt()
+            )
+        )
 
         val i = Intent(this,Questionnaire7Activity::class.java)
         startActivity(i)

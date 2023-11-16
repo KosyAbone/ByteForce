@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.byteforce.kickash.KickAshApp
 import com.byteforce.kickash.databinding.ActivityQuestionnaire2Binding
 
 class Questionnaire2Activity: AppCompatActivity() {
@@ -46,6 +47,12 @@ class Questionnaire2Activity: AppCompatActivity() {
             putString(Questionnaire1Activity.QuestionnaireConstants.question2 + username, answer)
             commit()
         }
+
+        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
+            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
+                noOfCigarettePerDay = answer
+            )
+        )
 
         val i = Intent(this,Questionnaire3Activity::class.java)
         startActivity(i)

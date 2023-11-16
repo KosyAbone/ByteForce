@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.byteforce.kickash.KickAshApp
 import com.byteforce.kickash.databinding.ActivityQuestionnaire8Binding
 
 class Questionnaire8Activity: AppCompatActivity() {
@@ -230,6 +231,13 @@ class Questionnaire8Activity: AppCompatActivity() {
             putString(Questionnaire1Activity.QuestionnaireConstants.question8 + username, answer)
             commit()
         }
+
+
+        KickAshApp.globalUserData = KickAshApp.globalUserData.copy(
+            questionnaire =  KickAshApp.globalUserData.questionnaire.copy(
+                hobbies = answer.split(",")
+            )
+        )
 
         val i = Intent(this,Questionnaire9Activity::class.java)
         startActivity(i)
