@@ -47,14 +47,14 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.5'
     implementation 'androidx.core:core-ktx:+'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0'
     implementation 'androidx.core:core-ktx:+'
@@ -64,7 +64,7 @@ dependencies {
 
     implementation("com.flaviofaria:kenburnsview:1.0.7")
 
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
 
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
 
@@ -75,7 +75,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
     // Also add the dependency for the Google Play services library and specify its version
-    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
 
     // Add the dependency for the Firebase SDK for Google Analytics
@@ -91,7 +91,7 @@ dependencies {
 
    // implementation 'com.github.lzyzsd:circleprogress:1.2.4'
 
-    implementation 'com.github.lzyzsd:CircleProgress:1.2.4'
+    implementation 'com.github.lzyzsd:CircleProgress:1.2.1'
 
     implementation 'ir.samanjafari.easycountdowntimer:easycountdowntimer:2.5.0'
 
@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
-    def room_version = "2.5.1"
+    def room_version = "2.6.0"
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
@@ -114,7 +114,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.8.0-1.0.9")
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.13")
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
     // To use Kotlin Symbol Processing (KSP)
