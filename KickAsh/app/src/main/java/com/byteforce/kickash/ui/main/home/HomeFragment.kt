@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.byteforce.kickash.R
+import com.byteforce.kickash.data.db.FbUserData
 import com.byteforce.kickash.databinding.FragmentHomeBinding
 import com.byteforce.kickash.ui.questionair.Questionnaire1Activity
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -94,13 +93,39 @@ class HomeFragment : Fragment() {
         }
 
         try {
-            generateHomeData()
+
+            getUserDataFromFirestore(FirebaseAuth.getInstance().currentUser!!.uid!!) {
+                generateHomeData(it)
+
+            }
+
+
         }catch (e:Exception) {
             e.printStackTrace()
         }
     }
 
-    fun generateHomeData() {
+    private fun getUserDataFromFirestore(userId: String, onComplete: (FbUserData?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val userDocumentRef = db.collection("users").document(userId)
+
+        userDocumentRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val userData = document.toObject(FbUserData::class.java)
+                    onComplete(userData)
+                } else {
+                    onComplete(null)
+                }
+            }
+            .addOnFailureListener { e ->
+                // Handle the failure
+                onComplete(null)
+            }
+    }
+
+    fun generateHomeData(fbUserData: FbUserData?) {
+
 
         val sharedPrefs = requireActivity().getSharedPreferences(
             "QuestionnaireData", Context.MODE_PRIVATE
