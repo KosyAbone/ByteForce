@@ -54,7 +54,7 @@ object DataHub {
             """.trimIndent(),
             "3 min ago",
             "Suraj ",
-            "https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+    "http://blacpythoz.insomnia247.nl/files/byteforce/vids/quit.mp4"
         ),
         ArticleModel(
             2,
@@ -102,7 +102,7 @@ Remember that the benefits of quitting smoking accumulate over time. The sooner 
             """.trimIndent(),
             "10 minutes ago",
             "Jane Smith",
-            "https://images.unsplash.com/photo-1660412377714-febabe778ea7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c21va2UlMjBmcmVlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+            "http://blacpythoz.insomnia247.nl/files/byteforce/vids/risk.mp4"
         ),
         ArticleModel(
             3,
@@ -154,7 +154,7 @@ Remember that quitting smoking is a personal journey, and what works for one per
             """.trimIndent(),
             "1 hour ago",
             "Alex Johnson",
-            "https://plus.unsplash.com/premium_photo-1661674304952-9b00876d9e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            "http://blacpythoz.insomnia247.nl/files/byteforce/vids/nicotine.mp4"
         ),
         ArticleModel(
             4,
