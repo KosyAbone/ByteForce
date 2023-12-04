@@ -30,7 +30,7 @@
                 android:layout_height="200dp">
 
 
-                <com.google.android.exoplayer2.ui.PlayerView
+                <com.google.android.exoplayer2.ui.StyledPlayerView
                     android:id="@+id/playerView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -40,6 +40,7 @@
                     android:id="@+id/iv_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:visibility="invisible"
                     android:scaleType="centerCrop"
                     android:layout_gravity="center"/>
 
