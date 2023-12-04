@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="quitting_smoking_quotes">
+        <item>"Your health is your wealth. Quit smoking today."</item>
+        <item>"Quitting smoking is the best decision you'll ever make."</item>
+        <item>"Don't let tobacco control your life. Break free today."</item>
+    </string-array>
+
+</resources>
