@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -43,16 +44,26 @@ class MainActivity : BaseActivity() {
 
     private fun scheduleNotification() {
         val notificationIntent = Intent(this, NotificationReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+//        var pendingIntent = PendingIntent.getBroadcast(
+//            this,
+//            0,
+//            notificationIntent,
+//            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+//        )
+
+
+      var  pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
+        } else {
+            PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
+        }
+
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         // Set the alarm to start at a specific time every day
         val calendar: Calendar = Calendar.getInstance()
+
         calendar.setTimeInMillis(System.currentTimeMillis())
         calendar.set(Calendar.HOUR_OF_DAY, 12) // Set the hour
         calendar.set(Calendar.MINUTE, 0) // Set the minute

@@ -90,7 +90,7 @@ class ArticlesDetailActivity : AppCompatActivity() {
 
         player = ExoPlayer.Builder(this@ArticlesDetailActivity).build()
         playerView!!.player = player
-        val mediaItem: MediaItem = MediaItem.fromUri("https://video.blender.org/download/videos/3d95fb3d-c866-42c8-9db1-fe82f48ccb95-804.mp4")
+        val mediaItem: MediaItem = MediaItem.fromUri(url)
         player!!.setMediaItem(mediaItem)
         player!!.prepare()
         player!!.playWhenReady = true
@@ -99,7 +99,8 @@ class ArticlesDetailActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        player?.setPlayWhenReady(false);
+        player?.playWhenReady = false;
         player?.release();
-        player = null;    }
+        player = null;
+    }
 }
